@@ -32,6 +32,21 @@
         function toggleDarkMode() {
             document.documentElement.classList.toggle('dark');
         }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const button = document.getElementById('mobile-menu-button');
+            const icon = document.getElementById('mobile-menu-icon');
+
+            if (!menu || !button || !icon) {
+                return;
+            }
+
+            menu.classList.toggle('hidden');
+            const isOpen = !menu.classList.contains('hidden');
+            button.setAttribute('aria-expanded', isOpen.toString());
+            icon.textContent = isOpen ? 'close' : 'menu';
+        }
     </script>
 <style>
         body {
@@ -65,11 +80,20 @@
 <span class="material-icons-outlined text-xl block dark:hidden">dark_mode</span>
 <span class="material-icons-outlined text-xl hidden dark:block">light_mode</span>
 </button>
-<button class="text-slate-600 dark:text-slate-300">
-<span class="material-icons-outlined text-3xl">menu</span>
+<button aria-controls="mobile-menu" aria-expanded="false" class="text-slate-600 dark:text-slate-300" id="mobile-menu-button" onclick="toggleMobileMenu()">
+<span class="material-icons-outlined text-3xl" id="mobile-menu-icon">menu</span>
 </button>
 </div>
 </nav>
+<div class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-background-dark/95 px-4 py-4" id="mobile-menu">
+<div class="flex flex-col gap-4">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors" href="services.html">Hizmetler</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-blue-400 font-medium transition-colors" href="#contact">İletişim</a>
+<a class="bg-secondary hover:bg-red-700 text-white px-6 py-2.5 rounded font-semibold transition-all shadow-md hover:shadow-lg text-center" href="#">
+                    Randevu Al
+                </a>
+</div>
+</div>
 </header>
 <main>
 <section class="relative overflow-hidden pt-16 pb-20 lg:pt-24 lg:pb-32 bg-sky-50 dark:bg-background-dark">
