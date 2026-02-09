@@ -19,6 +19,22 @@
         gtag('config', 'AW-17878969292');
 </script>
 <script>
+        function gtag_report_conversion(url) {
+            var callback = function () {
+                if (typeof(url) != 'undefined') {
+                    window.location = url;
+                }
+            };
+            gtag('event', 'conversion', {
+                'send_to': 'AW-17878969292/4sQNCI-KvPUbEMzXrc1C',
+                'value': 1.0,
+                'currency': 'TRY',
+                'event_callback': callback
+            });
+            return false;
+        }
+</script>
+<script>
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -434,7 +450,7 @@ Hızlı ve Güvenilir Ambulans Hizmeti İçin Bizi Arayın!
 </li>
 <li class="flex items-center gap-3">
 <span class="material-icons-outlined text-primary text-xl">call</span>
-<a class="hover:text-primary transition-colors" href="tel:+905541132019">+90 (554) 113 20 19</a>
+<a class="hover:text-primary transition-colors" href="tel:+905541132019" onclick="return gtag_report_conversion('tel:+905541132019');">+90 (554) 113 20 19</a>
 </li>
 <li class="flex items-center gap-3">
 <span class="material-icons-outlined text-primary text-xl">chat</span>
@@ -469,7 +485,7 @@ Hızlı ve Güvenilir Ambulans Hizmeti İçin Bizi Arayın!
 </div>
 </footer>
 <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-<a aria-label="Telefon ile ara" class="w-14 h-14 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:bg-blue-800 transition-colors" href="tel:+905541132019">
+<a aria-label="Telefon ile ara" class="w-14 h-14 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:bg-blue-800 transition-colors" href="tel:+905541132019" onclick="return gtag_report_conversion('tel:+905541132019');">
 <span class="material-icons-outlined text-2xl">call</span>
 </a>
 <a aria-label="WhatsApp ile yaz" class="w-14 h-14 rounded-full bg-emerald-500 text-white shadow-lg flex items-center justify-center hover:bg-emerald-600 transition-colors" href="https://wa.me/905541132019" rel="noopener noreferrer" target="_blank">
