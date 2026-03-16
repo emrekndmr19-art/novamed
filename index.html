@@ -45,26 +45,6 @@
             return true;
         }
 
-        function bindPhoneClickTracking() {
-            const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-            let lastPhoneClickAt = 0;
-
-            phoneLinks.forEach((phoneLink) => {
-                phoneLink.addEventListener('click', (event) => {
-                    const now = Date.now();
-                    if (now - lastPhoneClickAt < 800) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        return;
-                    }
-
-                    lastPhoneClickAt = now;
-                    trackContactConversion('phone_click');
-                });
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', bindPhoneClickTracking);
 </script>
 <script>
         tailwind.config = {
