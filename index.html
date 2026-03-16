@@ -99,6 +99,9 @@
 
             let current = 0;
             let autoPlayTimer;
+            let touchStartX = 0;
+            let touchStartY = 0;
+            const swipeThreshold = 50;
 
             function goTo(index) {
                 current = (index + slides.length) % slides.length;
@@ -140,8 +143,49 @@
                 });
             });
 
-            slider.addEventListener('mouseenter', stopAutoPlay);
-            slider.addEventListener('mouseleave', startAutoPlay);
+            slider.addEventListener('touchstart', (event) => {
+                if (!event.touches.length) return;
+                touchStartX = event.touches[0].clientX;
+                touchStartY = event.touches[0].clientY;
+                stopAutoPlay();
+            }, { passive: true });
+
+            slider.addEventListener('touchend', (event) => {
+                if (!event.changedTouches.length) {
+                    startAutoPlay();
+                    return;
+                }
+
+                const touchEndX = event.changedTouches[0].clientX;
+                const touchEndY = event.changedTouches[0].clientY;
+                const deltaX = touchEndX - touchStartX;
+                const deltaY = touchEndY - touchStartY;
+
+                if (Math.abs(deltaX) > swipeThreshold && Math.abs(deltaX) > Math.abs(deltaY)) {
+                    if (deltaX < 0) {
+                        goTo(current + 1);
+                    } else {
+                        goTo(current - 1);
+                    }
+                }
+
+                startAutoPlay();
+            }, { passive: true });
+
+            const desktopMedia = window.matchMedia('(min-width: 768px)');
+            const bindDesktopHoverPause = () => {
+                if (desktopMedia.matches) {
+                    slider.addEventListener('mouseenter', stopAutoPlay);
+                    slider.addEventListener('mouseleave', startAutoPlay);
+                } else {
+                    slider.removeEventListener('mouseenter', stopAutoPlay);
+                    slider.removeEventListener('mouseleave', startAutoPlay);
+                }
+            };
+
+            bindDesktopHoverPause();
+            desktopMedia.addEventListener('change', bindDesktopHoverPause);
+
             slider.addEventListener('focusin', stopAutoPlay);
             slider.addEventListener('focusout', startAutoPlay);
 
@@ -157,6 +201,17 @@
         }
         .pb-safe {
             padding-bottom: env(safe-area-inset-bottom);
+        }
+        .service-slider-image {
+            aspect-ratio: 1 / 0.9;
+            transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), filter 500ms ease;
+        }
+        #service-slider .group:hover .service-slider-image {
+            transform: scale(1.04);
+            filter: saturate(1.08);
+        }
+        #service-slider [data-slider-track] {
+            touch-action: pan-y;
         }
     </style>
 
@@ -286,42 +341,123 @@
 <section class="py-14 bg-sky-50 dark:bg-background-dark border-t border-slate-200 dark:border-slate-800">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="flex items-center justify-between mb-6 gap-4">
-<h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Hizmet Görsellerimiz</h2>
-<a class="text-primary font-semibold hover:underline" href="services.html">Tüm hizmetleri inceleyin</a>
+<h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Hizmetlerimiz</h2>
+<a class="text-primary font-semibold hover:underline" href="services.html">Tüm hizmetlere git</a>
 </div>
-<div class="relative" id="service-slider" aria-label="Hizmet görsel slider">
-<div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm bg-white dark:bg-slate-900">
-<div class="flex transition-transform duration-700 ease-out" data-slider-track>
-<article class="min-w-full">
-<img alt="Evde hızlı serum uygulaması" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/başş.jpeg" loading="lazy" decoding="async"/>
+<p class="text-slate-600 dark:text-slate-300 mb-6 max-w-2xl">Aşağıdaki kartlardan size uygun hizmeti seçebilir, detay sayfasına hızlıca geçiş yapabilirsiniz.</p>
+<div class="relative" id="service-slider" aria-label="Hizmetler slider alanı">
+<div class="overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-700 shadow-md bg-white dark:bg-slate-900">
+<div class="flex transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]" data-slider-track>
+<article class="min-w-full p-4 sm:p-6">
+<a class="group block rounded-2xl overflow-hidden relative" href="services.html">
+<img alt="Evde hızlı serum uygulaması" class="w-full h-[290px] sm:h-[360px] md:h-[420px] object-cover object-center service-slider-image" src="assets/başş.jpeg" loading="lazy" decoding="async"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/15 to-transparent"></div>
+<div class="absolute left-4 right-4 bottom-4 flex items-end justify-between gap-4">
+<div>
+<p class="text-white text-lg sm:text-xl font-bold">Evde Serum</p>
+<p class="text-white/90 text-sm">Hızlı yönlendirme ve uzman uygulama</p>
+</div>
+<span class="inline-flex items-center gap-1 text-white bg-primary/80 group-hover:bg-primary px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors">İncele <span class="material-icons-outlined text-base">arrow_forward</span></span>
+</div>
+</a>
 </article>
-<article class="min-w-full">
-<img alt="Evde pansuman hizmeti" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/pansuman.jpg" loading="lazy" decoding="async"/>
+<article class="min-w-full p-4 sm:p-6">
+<a class="group block rounded-2xl overflow-hidden relative" href="services.html">
+<img alt="Evde pansuman hizmeti" class="w-full h-[290px] sm:h-[360px] md:h-[420px] object-cover object-center service-slider-image" src="assets/pansuman.jpg" loading="lazy" decoding="async"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/15 to-transparent"></div>
+<div class="absolute left-4 right-4 bottom-4 flex items-end justify-between gap-4">
+<div>
+<p class="text-white text-lg sm:text-xl font-bold">Evde Pansuman</p>
+<p class="text-white/90 text-sm">Steril bakım ve düzenli kontrol</p>
+</div>
+<span class="inline-flex items-center gap-1 text-white bg-primary/80 group-hover:bg-primary px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors">İncele <span class="material-icons-outlined text-base">arrow_forward</span></span>
+</div>
+</a>
 </article>
-<article class="min-w-full">
-<img alt="Evde kolostomi bakımı" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/kolostomi.jpg" loading="lazy" decoding="async"/>
+<article class="min-w-full p-4 sm:p-6">
+<a class="group block rounded-2xl overflow-hidden relative" href="services.html">
+<img alt="Evde kolostomi bakımı" class="w-full h-[290px] sm:h-[360px] md:h-[420px] object-cover object-center service-slider-image" src="assets/kolostomi.jpg" loading="lazy" decoding="async"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/15 to-transparent"></div>
+<div class="absolute left-4 right-4 bottom-4 flex items-end justify-between gap-4">
+<div>
+<p class="text-white text-lg sm:text-xl font-bold">Kolostomi Bakımı</p>
+<p class="text-white/90 text-sm">Güvenli ve özenli bakım süreçleri</p>
+</div>
+<span class="inline-flex items-center gap-1 text-white bg-primary/80 group-hover:bg-primary px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors">İncele <span class="material-icons-outlined text-base">arrow_forward</span></span>
+</div>
+</a>
 </article>
-<article class="min-w-full">
-<img alt="Serum glutatyon uygulaması" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/glutatyon.jpeg" loading="lazy" decoding="async"/>
+<article class="min-w-full p-4 sm:p-6">
+<a class="group block rounded-2xl overflow-hidden relative" href="services.html">
+<img alt="Serum glutatyon uygulaması" class="w-full h-[290px] sm:h-[360px] md:h-[420px] object-cover object-center service-slider-image" src="assets/glutatyon.jpeg" loading="lazy" decoding="async"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/15 to-transparent"></div>
+<div class="absolute left-4 right-4 bottom-4 flex items-end justify-between gap-4">
+<div>
+<p class="text-white text-lg sm:text-xl font-bold">Glutatyon Uygulaması</p>
+<p class="text-white/90 text-sm">Takviye serum hizmeti</p>
+</div>
+<span class="inline-flex items-center gap-1 text-white bg-primary/80 group-hover:bg-primary px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors">İncele <span class="material-icons-outlined text-base">arrow_forward</span></span>
+</div>
+</a>
 </article>
-<article class="min-w-full">
-<img alt="Evde trakeostomi bakımı" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/trakeostomi.webp" loading="lazy" decoding="async"/>
+<article class="min-w-full p-4 sm:p-6">
+<a class="group block rounded-2xl overflow-hidden relative" href="services.html">
+<img alt="Evde trakeostomi bakımı" class="w-full h-[290px] sm:h-[360px] md:h-[420px] object-cover object-center service-slider-image" src="assets/trakeostomi.webp" loading="lazy" decoding="async"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/15 to-transparent"></div>
+<div class="absolute left-4 right-4 bottom-4 flex items-end justify-between gap-4">
+<div>
+<p class="text-white text-lg sm:text-xl font-bold">Trakeostomi Bakımı</p>
+<p class="text-white/90 text-sm">Uzman ekip ile güvenli takip</p>
+</div>
+<span class="inline-flex items-center gap-1 text-white bg-primary/80 group-hover:bg-primary px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors">İncele <span class="material-icons-outlined text-base">arrow_forward</span></span>
+</div>
+</a>
 </article>
-<article class="min-w-full">
-<img alt="Evde sonda kateter bakımı" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/sonda.png" loading="lazy" decoding="async"/>
+<article class="min-w-full p-4 sm:p-6">
+<a class="group block rounded-2xl overflow-hidden relative" href="services.html">
+<img alt="Evde sonda kateter bakımı" class="w-full h-[290px] sm:h-[360px] md:h-[420px] object-cover object-center service-slider-image" src="assets/sonda.png" loading="lazy" decoding="async"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/15 to-transparent"></div>
+<div class="absolute left-4 right-4 bottom-4 flex items-end justify-between gap-4">
+<div>
+<p class="text-white text-lg sm:text-xl font-bold">Sonda/Kateter Bakımı</p>
+<p class="text-white/90 text-sm">Konforlu ve güvenli bakım</p>
+</div>
+<span class="inline-flex items-center gap-1 text-white bg-primary/80 group-hover:bg-primary px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors">İncele <span class="material-icons-outlined text-base">arrow_forward</span></span>
+</div>
+</a>
 </article>
-<article class="min-w-full">
-<img alt="Evde dikiş alma hizmeti" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/evde-dikis-alma.jpg" loading="lazy" decoding="async"/>
+<article class="min-w-full p-4 sm:p-6">
+<a class="group block rounded-2xl overflow-hidden relative" href="services.html">
+<img alt="Evde dikiş alma hizmeti" class="w-full h-[290px] sm:h-[360px] md:h-[420px] object-cover object-center service-slider-image" src="assets/evde-dikis-alma.jpg" loading="lazy" decoding="async"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/15 to-transparent"></div>
+<div class="absolute left-4 right-4 bottom-4 flex items-end justify-between gap-4">
+<div>
+<p class="text-white text-lg sm:text-xl font-bold">Evde Dikiş Alma</p>
+<p class="text-white/90 text-sm">Pratik ve güvenilir uygulama</p>
+</div>
+<span class="inline-flex items-center gap-1 text-white bg-primary/80 group-hover:bg-primary px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors">İncele <span class="material-icons-outlined text-base">arrow_forward</span></span>
+</div>
+</a>
 </article>
-<article class="min-w-full">
-<img alt="Özel ambulans hizmeti" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/AMBULANSS.jpeg" loading="lazy" decoding="async"/>
+<article class="min-w-full p-4 sm:p-6">
+<a class="group block rounded-2xl overflow-hidden relative" href="services.html">
+<img alt="Özel ambulans hizmeti" class="w-full h-[290px] sm:h-[360px] md:h-[420px] object-cover object-center service-slider-image" src="assets/AMBULANSS.jpeg" loading="lazy" decoding="async"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/15 to-transparent"></div>
+<div class="absolute left-4 right-4 bottom-4 flex items-end justify-between gap-4">
+<div>
+<p class="text-white text-lg sm:text-xl font-bold">Özel Ambulans</p>
+<p class="text-white/90 text-sm">Transfer ve destek hizmetleri</p>
+</div>
+<span class="inline-flex items-center gap-1 text-white bg-primary/80 group-hover:bg-primary px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors">İncele <span class="material-icons-outlined text-base">arrow_forward</span></span>
+</div>
+</a>
 </article>
 </div>
 </div>
-<button aria-label="Önceki görsel" class="absolute top-1/2 -translate-y-1/2 left-3 w-11 h-11 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 shadow flex items-center justify-center text-slate-700 dark:text-slate-100" data-slider-prev>
+<button aria-label="Önceki görsel" class="hidden md:flex absolute top-1/2 -translate-y-1/2 left-3 w-11 h-11 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 shadow items-center justify-center text-slate-700 dark:text-slate-100" data-slider-prev>
 <span class="material-icons-outlined">chevron_left</span>
 </button>
-<button aria-label="Sonraki görsel" class="absolute top-1/2 -translate-y-1/2 right-3 w-11 h-11 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 shadow flex items-center justify-center text-slate-700 dark:text-slate-100" data-slider-next>
+<button aria-label="Sonraki görsel" class="hidden md:flex absolute top-1/2 -translate-y-1/2 right-3 w-11 h-11 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 shadow items-center justify-center text-slate-700 dark:text-slate-100" data-slider-next>
 <span class="material-icons-outlined">chevron_right</span>
 </button>
 <div class="flex items-center justify-center gap-2 mt-4" aria-label="Slider gösterge düğmeleri">
