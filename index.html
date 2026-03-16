@@ -99,6 +99,9 @@
 
             let current = 0;
             let autoPlayTimer;
+            let touchStartX = 0;
+            let touchStartY = 0;
+            const swipeThreshold = 50;
 
             function goTo(index) {
                 current = (index + slides.length) % slides.length;
@@ -140,8 +143,49 @@
                 });
             });
 
-            slider.addEventListener('mouseenter', stopAutoPlay);
-            slider.addEventListener('mouseleave', startAutoPlay);
+            slider.addEventListener('touchstart', (event) => {
+                if (!event.touches.length) return;
+                touchStartX = event.touches[0].clientX;
+                touchStartY = event.touches[0].clientY;
+                stopAutoPlay();
+            }, { passive: true });
+
+            slider.addEventListener('touchend', (event) => {
+                if (!event.changedTouches.length) {
+                    startAutoPlay();
+                    return;
+                }
+
+                const touchEndX = event.changedTouches[0].clientX;
+                const touchEndY = event.changedTouches[0].clientY;
+                const deltaX = touchEndX - touchStartX;
+                const deltaY = touchEndY - touchStartY;
+
+                if (Math.abs(deltaX) > swipeThreshold && Math.abs(deltaX) > Math.abs(deltaY)) {
+                    if (deltaX < 0) {
+                        goTo(current + 1);
+                    } else {
+                        goTo(current - 1);
+                    }
+                }
+
+                startAutoPlay();
+            }, { passive: true });
+
+            const desktopMedia = window.matchMedia('(min-width: 768px)');
+            const bindDesktopHoverPause = () => {
+                if (desktopMedia.matches) {
+                    slider.addEventListener('mouseenter', stopAutoPlay);
+                    slider.addEventListener('mouseleave', startAutoPlay);
+                } else {
+                    slider.removeEventListener('mouseenter', stopAutoPlay);
+                    slider.removeEventListener('mouseleave', startAutoPlay);
+                }
+            };
+
+            bindDesktopHoverPause();
+            desktopMedia.addEventListener('change', bindDesktopHoverPause);
+
             slider.addEventListener('focusin', stopAutoPlay);
             slider.addEventListener('focusout', startAutoPlay);
 
@@ -165,6 +209,9 @@
         #service-slider .group:hover .service-slider-image {
             transform: scale(1.04);
             filter: saturate(1.08);
+        }
+        #service-slider [data-slider-track] {
+            touch-action: pan-y;
         }
     </style>
 
@@ -407,10 +454,10 @@
 </article>
 </div>
 </div>
-<button aria-label="Önceki görsel" class="absolute top-1/2 -translate-y-1/2 left-3 w-11 h-11 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 shadow flex items-center justify-center text-slate-700 dark:text-slate-100" data-slider-prev>
+<button aria-label="Önceki görsel" class="hidden md:flex absolute top-1/2 -translate-y-1/2 left-3 w-11 h-11 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 shadow items-center justify-center text-slate-700 dark:text-slate-100" data-slider-prev>
 <span class="material-icons-outlined">chevron_left</span>
 </button>
-<button aria-label="Sonraki görsel" class="absolute top-1/2 -translate-y-1/2 right-3 w-11 h-11 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 shadow flex items-center justify-center text-slate-700 dark:text-slate-100" data-slider-next>
+<button aria-label="Sonraki görsel" class="hidden md:flex absolute top-1/2 -translate-y-1/2 right-3 w-11 h-11 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 shadow items-center justify-center text-slate-700 dark:text-slate-100" data-slider-next>
 <span class="material-icons-outlined">chevron_right</span>
 </button>
 <div class="flex items-center justify-center gap-2 mt-4" aria-label="Slider gösterge düğmeleri">
