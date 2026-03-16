@@ -44,6 +44,27 @@
             return true;
         }
 
+        function initializeCallLinks() {
+            const callLinks = Array.from(document.querySelectorAll('a[href^="tel:"]'));
+            if (!callLinks.length) return;
+
+            let lastCallAttemptAt = 0;
+            const cooldownMs = 1200;
+
+            callLinks.forEach((link) => {
+                link.dataset.callLink = 'true';
+                link.addEventListener('click', (event) => {
+                    const now = Date.now();
+                    if (now - lastCallAttemptAt < cooldownMs) {
+                        event.preventDefault();
+                        return;
+                    }
+                    lastCallAttemptAt = now;
+                });
+            });
+        }
+
+
 </script>
 <script>
         tailwind.config = {
@@ -582,5 +603,12 @@ Hızlı ve Güvenilir Ambulans Hizmeti İçin Bizi Arayın!
 <img alt="WhatsApp" class="w-full h-full object-cover rounded-full" src="assets/wpplogo.jpeg" loading="lazy" decoding="async"/>
 </a>
 </div>
+
+
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCallLinks();
+        }, { once: true });
+</script>
 
 </body></html>
