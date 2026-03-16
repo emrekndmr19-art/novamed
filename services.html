@@ -106,6 +106,54 @@
             icon.textContent = isOpen ? 'close' : 'menu';
         }
 
+        function showCallHint(message) {
+            const hintId = 'call-action-hint';
+            let hint = document.getElementById(hintId);
+
+            if (!hint) {
+                hint = document.createElement('div');
+                hint.id = hintId;
+                hint.className = 'fixed left-1/2 -translate-x-1/2 bottom-24 z-[60] bg-slate-900 text-white text-sm px-4 py-2 rounded-lg shadow-lg';
+                hint.setAttribute('role', 'status');
+                hint.setAttribute('aria-live', 'polite');
+                document.body.appendChild(hint);
+            }
+
+            hint.textContent = message;
+            hint.classList.remove('hidden');
+
+            window.clearTimeout(showCallHint.hideTimer);
+            showCallHint.hideTimer = window.setTimeout(() => {
+                hint.classList.add('hidden');
+            }, 2800);
+        }
+
+        function initializePhoneLinkGuard() {
+            const PHONE_LINK_COOLDOWN_MS = 4500;
+            let lastCallAttempt = 0;
+
+            document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
+                link.addEventListener('click', (event) => {
+                    const now = Date.now();
+                    const elapsed = now - lastCallAttempt;
+
+                    if (elapsed < PHONE_LINK_COOLDOWN_MS) {
+                        event.preventDefault();
+                        const remaining = Math.ceil((PHONE_LINK_COOLDOWN_MS - elapsed) / 1000);
+                        showCallHint(`Arama ekranı açılmadıysa ${remaining} sn bekleyip tekrar deneyin.`);
+                        return;
+                    }
+
+                    lastCallAttempt = now;
+                    trackContactConversion('phone_click');
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePhoneLinkGuard();
+        }, { once: true });
+
     </script>
 <style>
         body {
