@@ -86,40 +86,6 @@
             icon.textContent = isOpen ? 'close' : 'menu';
         }
 
-        function initializeCallCtaGuard() {
-            const callGuardKey = '__novamedCallCtaGuardBound';
-            if (window[callGuardKey]) return;
-            window[callGuardKey] = true;
-
-            let lastCallHref = '';
-            let lastCallAt = 0;
-            const duplicateCallThresholdMs = 1200;
-
-            const onTelClick = (event) => {
-                const link = event.target.closest('a[href^="tel:"]');
-                if (!link) return;
-
-                const href = link.getAttribute('href') || '';
-                const now = Date.now();
-                const isDuplicateCall = href === lastCallHref && (now - lastCallAt) < duplicateCallThresholdMs;
-
-                if (isDuplicateCall) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    return;
-                }
-
-                lastCallHref = href;
-                lastCallAt = now;
-            };
-
-            document.addEventListener('click', onTelClick, true);
-            window.addEventListener('pagehide', () => {
-                document.removeEventListener('click', onTelClick, true);
-                window[callGuardKey] = false;
-            }, { once: true });
-        }
-
         function initializeServiceSlider() {
             const slider = document.getElementById('service-slider');
             if (!slider) return;
@@ -229,7 +195,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            initializeCallCtaGuard();
             initializeServiceSlider();
         }, { once: true });
     </script>
