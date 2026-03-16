@@ -25,7 +25,10 @@
     function toggleDarkMode(){document.documentElement.classList.toggle('dark');}
     function toggleMobileMenu(){const menu=document.getElementById('mobile-menu');const hidden=menu.classList.toggle('hidden');document.getElementById('mobile-menu-button').setAttribute('aria-expanded',(!hidden).toString());}
   </script>
-  <style>body{font-family:'Inter',sans-serif;}</style>
+  <style>
+    body{font-family:'Inter',sans-serif;overflow-x:hidden;}
+    .service-card-image{width:100%;height:13rem;object-fit:cover;border-radius:.75rem;}
+  </style>
 </head>
 <body class="bg-sky-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100">
 <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-950/90 backdrop-blur border-b border-slate-200 dark:border-slate-800">
@@ -42,23 +45,28 @@
 
   <div class="mt-8 grid md:grid-cols-2 gap-6">
     <article id="evde-serum" class="bg-white dark:bg-slate-900 rounded-xl border p-5">
-      <h2 class="text-xl font-bold">Evde Serum</h2>
+      <img src="assets/glutatyon.jpeg" alt="Evde serum hizmeti" class="service-card-image" loading="lazy" />
+      <h2 class="mt-4 text-xl font-bold">Evde Serum</h2>
       <p class="mt-2 text-sm">Sıvı desteği ve planlı serum uygulamaları ev ortamında güvenli şekilde gerçekleştirilir.</p>
     </article>
     <article id="evde-hemsire" class="bg-white dark:bg-slate-900 rounded-xl border p-5">
-      <h2 class="text-xl font-bold">Evde Hemşire</h2>
+      <img src="assets/iht2.jpeg" alt="Evde hemşire hizmeti" class="service-card-image" loading="lazy" />
+      <h2 class="mt-4 text-xl font-bold">Evde Hemşire</h2>
       <p class="mt-2 text-sm">Evde bakım ihtiyacı olan bireyler için hemşirelik desteği ve takip planlaması yapılır.</p>
     </article>
     <article id="evde-pansuman" class="bg-white dark:bg-slate-900 rounded-xl border p-5">
-      <h2 class="text-xl font-bold">Evde Pansuman</h2>
+      <img src="assets/pansuman.jpg" alt="Evde pansuman hizmeti" class="service-card-image" loading="lazy" />
+      <h2 class="mt-4 text-xl font-bold">Evde Pansuman</h2>
       <p class="mt-2 text-sm">Yara bakımının düzenli, steril ve kontrollü şekilde evde sürdürülmesine yardımcı olunur.</p>
     </article>
     <article id="evde-igne" class="bg-white dark:bg-slate-900 rounded-xl border p-5">
-      <h2 class="text-xl font-bold">Evde İğne</h2>
+      <img src="assets/evde-dikis-alma.jpg" alt="Evde iğne hizmeti" class="service-card-image" loading="lazy" />
+      <h2 class="mt-4 text-xl font-bold">Evde İğne</h2>
       <p class="mt-2 text-sm">Hekim planına uygun enjeksiyon uygulamaları için evde pratik çözümler sunulur.</p>
     </article>
     <article id="evde-vitamin-serum" class="bg-white dark:bg-slate-900 rounded-xl border p-5 md:col-span-2">
-      <h2 class="text-xl font-bold">Evde Vitamin Serum</h2>
+      <img src="assets/AMBULANSS.jpeg" alt="Evde vitamin serum hizmeti" class="service-card-image" loading="lazy" />
+      <h2 class="mt-4 text-xl font-bold">Evde Vitamin Serum</h2>
       <p class="mt-2 text-sm">Hekim onayı ve uygunluk doğrultusunda vitamin içerikli serum uygulamaları planlanır.</p>
     </article>
   </div>
