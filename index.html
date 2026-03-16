@@ -86,70 +86,6 @@
             icon.textContent = isOpen ? 'close' : 'menu';
         }
 
-        function shouldUseCallConfirmation() {
-            const userAgent = window.navigator.userAgent;
-            const isIOS = /iP(hone|ad|od)/.test(userAgent) || (window.navigator.platform === 'MacIntel' && window.navigator.maxTouchPoints > 1);
-            const isSafari = /Safari/.test(userAgent) && !/(CriOS|FxiOS|EdgiOS|OPiOS)/.test(userAgent);
-            return isIOS && isSafari;
-        }
-
-        function openCallConfirmationModal(phoneHref) {
-            const modal = document.getElementById('call-confirm-modal');
-            const confirmAction = document.getElementById('call-confirm-action');
-            if (!modal || !confirmAction || !phoneHref) return;
-            confirmAction.setAttribute('href', phoneHref);
-            modal.classList.remove('hidden');
-            document.body.classList.add('overflow-hidden');
-        }
-
-        function closeCallConfirmationModal() {
-            const modal = document.getElementById('call-confirm-modal');
-            if (!modal) return;
-            modal.classList.add('hidden');
-            document.body.classList.remove('overflow-hidden');
-        }
-
-        function initializeCallConfirmation() {
-            if (!shouldUseCallConfirmation()) return;
-
-            const callLinks = Array.from(document.querySelectorAll('a[href^="tel:"]'));
-            callLinks.forEach((link) => {
-                if (link.dataset.skipCallConfirm === 'true') return;
-                link.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    openCallConfirmationModal(link.getAttribute('href'));
-                });
-            });
-
-            const closeButtons = document.querySelectorAll('[data-call-confirm-close]');
-            closeButtons.forEach((button) => {
-                button.addEventListener('click', closeCallConfirmationModal);
-            });
-
-            const modal = document.getElementById('call-confirm-modal');
-            if (modal) {
-                modal.addEventListener('click', (event) => {
-                    if (event.target === modal) {
-                        closeCallConfirmationModal();
-                    }
-                });
-            }
-
-            const confirmAction = document.getElementById('call-confirm-action');
-            if (confirmAction) {
-                confirmAction.addEventListener('click', () => {
-                    trackContactConversion('call_click');
-                    closeCallConfirmationModal();
-                });
-            }
-
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape') {
-                    closeCallConfirmationModal();
-                }
-            });
-        }
-
         function initializeServiceSlider() {
             const slider = document.getElementById('service-slider');
             if (!slider) return;
@@ -260,7 +196,6 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             initializeServiceSlider();
-            initializeCallConfirmation();
         }, { once: true });
     </script>
 <style>
@@ -337,10 +272,10 @@
 <span class="tracking-wide">7/24 uzman ekiple evde hızlı serum işlemi</span>
 </div>
 <div class="mb-4 text-sm font-semibold text-slate-600 dark:text-slate-300">
-<a class="hover:text-primary transition-colors" href="tel:+905541132019">+90 (554) 113 20 19</a>
+<a class="hover:text-primary transition-colors" href="tel:+905541132019" onclick="trackContactConversion('call_click')">+90 (554) 113 20 19</a>
 </div>
 <div class="mb-6">
-<a class="inline-flex items-center gap-2 text-lg font-extrabold text-secondary bg-white/80 dark:bg-slate-800/80 px-4 py-2 rounded-full shadow-sm border border-secondary/30" href="tel:+905541132019">
+<a class="inline-flex items-center gap-2 text-lg font-extrabold text-secondary bg-white/80 dark:bg-slate-800/80 px-4 py-2 rounded-full shadow-sm border border-secondary/30" href="tel:+905541132019" onclick="trackContactConversion('call_click')">
 <span class="material-icons-outlined">call</span>
 <span>+90 (554) 113 20 19</span>
 </a>
@@ -364,7 +299,7 @@
                         </a>
 </div>
 <div class="mt-6 text-base font-semibold text-slate-700 dark:text-slate-200">
-<a class="inline-flex items-center gap-2 hover:text-primary transition-colors" href="tel:+905541132019">
+<a class="inline-flex items-center gap-2 hover:text-primary transition-colors" href="tel:+905541132019" onclick="trackContactConversion('call_click')">
 <span class="material-icons-outlined text-secondary">call</span>
 <span>Hemen Ara: +90 (554) 113 20 19</span>
 </a>
@@ -581,7 +516,7 @@
 </li>
 <li class="flex items-center gap-3">
 <span class="material-icons-outlined text-primary text-xl">call</span>
-<a class="hover:text-primary transition-colors" href="tel:+905541132019">+90 (554) 113 20 19</a>
+<a class="hover:text-primary transition-colors" href="tel:+905541132019" onclick="trackContactConversion('call_click')">+90 (554) 113 20 19</a>
 </li>
 <li class="flex items-center gap-3">
 <span class="material-icons-outlined text-primary text-xl">chat</span>
@@ -604,36 +539,25 @@
 </div>
 </div>
 <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
-<a class="text-sm text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="tel:+905541132019">+90 (554) 113 20 19</a>
+<a class="text-sm text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="tel:+905541132019" onclick="trackContactConversion('call_click')">+90 (554) 113 20 19</a>
 <p class="text-slate-500 dark:text-slate-400 text-sm">
                     © 2024 Evimde Sağlık Evde Sağlık Hizmetleri. Tüm Hakları Saklıdır.
                 </p>
 <div class="flex gap-6">
 <a class="text-slate-400 hover:text-primary transition-colors" href="https://wa.me/905541132019" rel="noopener noreferrer" target="_blank" aria-label="WhatsApp iletişim"><span class="material-icons-outlined">chat</span></a>
-<a class="text-slate-400 hover:text-primary transition-colors" href="tel:+905541132019" aria-label="Telefon ile arama"><span class="material-icons-outlined">call</span></a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="tel:+905541132019" aria-label="Telefon ile arama" onclick="trackContactConversion('call_click')"><span class="material-icons-outlined">call</span></a>
 <a class="text-slate-400 hover:text-primary transition-colors" href="index.html#contact" aria-label="İletişim bölümüne git"><span class="material-icons-outlined">alternate_email</span></a>
 </div>
 </div>
 </div>
 </footer>
 <div class="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col gap-3 pb-safe">
-<a aria-label="Telefon ile ara" class="w-16 h-16 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:bg-blue-800 transition-colors" href="tel:+905541132019">
+<a aria-label="Telefon ile ara" class="w-16 h-16 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:bg-blue-800 transition-colors" href="tel:+905541132019" onclick="trackContactConversion('call_click')">
 <span class="material-icons-outlined text-[1.7rem]">call</span>
 </a>
 <a aria-label="WhatsApp ile yaz" class="w-16 h-16 rounded-full bg-emerald-500 text-white shadow-lg flex items-center justify-center hover:bg-emerald-600 transition-colors" href="https://wa.me/905541132019" rel="noopener noreferrer" target="_blank" onclick="trackContactConversion('whatsapp_click')">
 <img alt="WhatsApp" class="w-full h-full object-cover rounded-full" src="assets/wpplogo.jpeg" loading="lazy" decoding="async"/>
 </a>
-</div>
-
-<div id="call-confirm-modal" class="fixed inset-0 z-[60] hidden bg-slate-950/60 px-4 flex items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="call-confirm-title">
-<div class="w-full max-w-sm rounded-2xl bg-white dark:bg-slate-900 p-5 shadow-2xl border border-slate-200 dark:border-slate-700">
-<h3 id="call-confirm-title" class="text-lg font-bold text-slate-900 dark:text-white">Aramayı başlatmak istiyor musunuz?</h3>
-<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Safari'de yanlış dokunmaları önlemek için ikinci bir onay adımı gösteriyoruz.</p>
-<div class="mt-5 grid grid-cols-2 gap-3">
-<button type="button" data-call-confirm-close class="rounded-lg border border-slate-300 dark:border-slate-600 px-3 py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Vazgeç</button>
-<a id="call-confirm-action" data-skip-call-confirm="true" class="rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-white text-center hover:bg-blue-800 transition-colors" href="tel:+905541132019">Ara</a>
-</div>
-</div>
 </div>
 
 </body></html>
