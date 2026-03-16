@@ -44,6 +44,26 @@
             return true;
         }
 
+        function initializeCallLinks() {
+            const callLinks = Array.from(document.querySelectorAll('a[href^="tel:"]'));
+            if (!callLinks.length) return;
+
+            let lastCallAttemptAt = 0;
+            const cooldownMs = 1200;
+
+            callLinks.forEach((link) => {
+                link.dataset.callLink = 'true';
+                link.addEventListener('click', (event) => {
+                    const now = Date.now();
+                    if (now - lastCallAttemptAt < cooldownMs) {
+                        event.preventDefault();
+                        return;
+                    }
+                    lastCallAttemptAt = now;
+                });
+            });
+        }
+
 </script>
 <script>
         tailwind.config = {
@@ -195,6 +215,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             initializeServiceSlider();
+            initializeCallLinks();
         }, { once: true });
     </script>
 <style>
