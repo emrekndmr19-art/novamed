@@ -84,6 +84,72 @@
             button.setAttribute('aria-expanded', isOpen.toString());
             icon.textContent = isOpen ? 'close' : 'menu';
         }
+
+        function initializeServiceSlider() {
+            const slider = document.getElementById('service-slider');
+            if (!slider) return;
+
+            const track = slider.querySelector('[data-slider-track]');
+            const slides = track ? Array.from(track.children) : [];
+            const prevButton = slider.querySelector('[data-slider-prev]');
+            const nextButton = slider.querySelector('[data-slider-next]');
+            const dots = Array.from(slider.querySelectorAll('[data-slider-dot]'));
+
+            if (!track || slides.length === 0 || !prevButton || !nextButton) return;
+
+            let current = 0;
+            let autoPlayTimer;
+
+            function goTo(index) {
+                current = (index + slides.length) % slides.length;
+                track.style.transform = `translateX(-${current * 100}%)`;
+                dots.forEach((dot, i) => {
+                    dot.setAttribute('aria-current', i === current ? 'true' : 'false');
+                    dot.classList.toggle('bg-primary', i === current);
+                    dot.classList.toggle('bg-slate-300', i !== current);
+                });
+            }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoPlayTimer = window.setInterval(() => {
+                    goTo(current + 1);
+                }, 4500);
+            }
+
+            function stopAutoPlay() {
+                if (autoPlayTimer) {
+                    window.clearInterval(autoPlayTimer);
+                }
+            }
+
+            prevButton.addEventListener('click', () => {
+                goTo(current - 1);
+                startAutoPlay();
+            });
+
+            nextButton.addEventListener('click', () => {
+                goTo(current + 1);
+                startAutoPlay();
+            });
+
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    goTo(i);
+                    startAutoPlay();
+                });
+            });
+
+            slider.addEventListener('mouseenter', stopAutoPlay);
+            slider.addEventListener('mouseleave', startAutoPlay);
+            slider.addEventListener('focusin', stopAutoPlay);
+            slider.addEventListener('focusout', startAutoPlay);
+
+            goTo(0);
+            startAutoPlay();
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeServiceSlider);
     </script>
 <style>
         body {
@@ -212,6 +278,61 @@
 </li>
 </ul>
 </div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-14 bg-sky-50 dark:bg-background-dark border-t border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between mb-6 gap-4">
+<h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Hizmet Görsellerimiz</h2>
+<a class="text-primary font-semibold hover:underline" href="services.html">Tüm hizmetleri inceleyin</a>
+</div>
+<div class="relative" id="service-slider" aria-label="Hizmet görsel slider">
+<div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm bg-white dark:bg-slate-900">
+<div class="flex transition-transform duration-700 ease-out" data-slider-track>
+<article class="min-w-full">
+<img alt="Evde hızlı serum uygulaması" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/başş.jpeg" loading="lazy" decoding="async"/>
+</article>
+<article class="min-w-full">
+<img alt="Evde pansuman hizmeti" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/pansuman.jpg" loading="lazy" decoding="async"/>
+</article>
+<article class="min-w-full">
+<img alt="Evde kolostomi bakımı" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/kolostomi.jpg" loading="lazy" decoding="async"/>
+</article>
+<article class="min-w-full">
+<img alt="Serum glutatyon uygulaması" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/glutatyon.jpeg" loading="lazy" decoding="async"/>
+</article>
+<article class="min-w-full">
+<img alt="Evde trakeostomi bakımı" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/trakeostomi.webp" loading="lazy" decoding="async"/>
+</article>
+<article class="min-w-full">
+<img alt="Evde sonda kateter bakımı" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/sonda.png" loading="lazy" decoding="async"/>
+</article>
+<article class="min-w-full">
+<img alt="Evde dikiş alma hizmeti" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/evde-dikis-alma.jpg" loading="lazy" decoding="async"/>
+</article>
+<article class="min-w-full">
+<img alt="Özel ambulans hizmeti" class="w-full h-[260px] sm:h-[340px] object-cover" src="assets/AMBULANSS.jpeg" loading="lazy" decoding="async"/>
+</article>
+</div>
+</div>
+<button aria-label="Önceki görsel" class="absolute top-1/2 -translate-y-1/2 left-3 w-11 h-11 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 shadow flex items-center justify-center text-slate-700 dark:text-slate-100" data-slider-prev>
+<span class="material-icons-outlined">chevron_left</span>
+</button>
+<button aria-label="Sonraki görsel" class="absolute top-1/2 -translate-y-1/2 right-3 w-11 h-11 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 shadow flex items-center justify-center text-slate-700 dark:text-slate-100" data-slider-next>
+<span class="material-icons-outlined">chevron_right</span>
+</button>
+<div class="flex items-center justify-center gap-2 mt-4" aria-label="Slider gösterge düğmeleri">
+<button class="w-2.5 h-2.5 rounded-full bg-primary" aria-label="1. görsele git" data-slider-dot></button>
+<button class="w-2.5 h-2.5 rounded-full bg-slate-300" aria-label="2. görsele git" data-slider-dot></button>
+<button class="w-2.5 h-2.5 rounded-full bg-slate-300" aria-label="3. görsele git" data-slider-dot></button>
+<button class="w-2.5 h-2.5 rounded-full bg-slate-300" aria-label="4. görsele git" data-slider-dot></button>
+<button class="w-2.5 h-2.5 rounded-full bg-slate-300" aria-label="5. görsele git" data-slider-dot></button>
+<button class="w-2.5 h-2.5 rounded-full bg-slate-300" aria-label="6. görsele git" data-slider-dot></button>
+<button class="w-2.5 h-2.5 rounded-full bg-slate-300" aria-label="7. görsele git" data-slider-dot></button>
+<button class="w-2.5 h-2.5 rounded-full bg-slate-300" aria-label="8. görsele git" data-slider-dot></button>
 </div>
 </div>
 </div>
