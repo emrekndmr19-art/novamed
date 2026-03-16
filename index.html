@@ -95,10 +95,14 @@
     .floating-contact-icon--call{background:linear-gradient(135deg,#2563eb,#1d4ed8);}
     .floating-contact-icon--wa{background:#fff;padding:.32rem;}
     .floating-contact-icon--wa img{width:100%;height:100%;border-radius:9999px;object-fit:cover;}
+    .service-gallery-track{scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;}
+    .service-gallery-item{scroll-snap-align:start;}
+    .service-gallery-track::-webkit-scrollbar{display:none;}
     @keyframes floatingIconBob{0%,100%{transform:translateY(var(--floating-icon-shift,0px));}50%{transform:translateY(calc(var(--floating-icon-shift,0px) - 5px));}}
     @media (prefers-reduced-motion: reduce){
       .services-card-text,.services-card-text.reverse{animation:none;}
       .floating-contact-icon{animation:none;}
+      .service-gallery-track{scroll-behavior:auto;}
     }
   </style>
 </head>
@@ -133,7 +137,50 @@
       </div>
       <p class="mt-4 text-sm">Telefon: <a href="tel:+905541132019" data-track="call" class="font-semibold">+90 (554) 113 20 19</a> • Hizmet Bölgesi: Esenyurt, Beylikdüzü, Avcılar ve İstanbul geneli</p>
     </div>
-    <img src="assets/iht1.jpeg" alt="Evde sağlık hizmeti uygulaması" class="rounded-2xl shadow-lg w-full h-80 object-cover" />
+    <div class="relative">
+      <div id="hero-services-gallery" class="service-gallery-track rounded-2xl shadow-lg flex gap-4 overflow-x-auto snap-x snap-mandatory">
+        <a href="services.html#evde-serum" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
+          <img src="assets/glutatyon.jpeg" alt="Evde serum hizmeti" class="w-full h-72 object-cover" />
+          <div class="p-4">
+            <h2 class="text-xl font-bold">Evde Serum</h2>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Sıvı desteği ve serum uygulamaları için hızlı planlama.</p>
+          </div>
+        </a>
+        <a href="services.html#evde-hemsire" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
+          <img src="assets/iht2.jpeg" alt="Evde hemşire hizmeti" class="w-full h-72 object-cover" />
+          <div class="p-4">
+            <h2 class="text-xl font-bold">Evde Hemşire</h2>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Evde bakım için düzenli hemşirelik takibi ve destek.</p>
+          </div>
+        </a>
+        <a href="services.html#evde-pansuman" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
+          <img src="assets/pansuman.jpg" alt="Evde pansuman hizmeti" class="w-full h-72 object-cover" />
+          <div class="p-4">
+            <h2 class="text-xl font-bold">Evde Pansuman</h2>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Steril yara bakımı ve pansuman işlemleri evde uygulanır.</p>
+          </div>
+        </a>
+        <a href="services.html#evde-igne" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
+          <img src="assets/evde-dikis-alma.jpg" alt="Evde iğne hizmeti" class="w-full h-72 object-cover" />
+          <div class="p-4">
+            <h2 class="text-xl font-bold">Evde İğne</h2>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Hekim planına uygun enjeksiyon hizmeti güvenli şekilde sunulur.</p>
+          </div>
+        </a>
+        <a href="services.html#evde-vitamin-serum" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
+          <img src="assets/AMBULANSS.jpeg" alt="Evde vitamin serum hizmeti" class="w-full h-72 object-cover" />
+          <div class="p-4">
+            <h2 class="text-xl font-bold">Evde Vitamin Serum</h2>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Uygunluk durumuna göre vitamin içerikli serum desteği sağlanır.</p>
+          </div>
+        </a>
+      </div>
+      <div class="mt-4 flex items-center justify-between">
+        <button type="button" id="hero-services-prev" aria-label="Önceki hizmet" class="px-4 py-2 rounded-lg border bg-white dark:bg-slate-900">← Önceki</button>
+        <p class="text-xs text-slate-600 dark:text-slate-300">Sağa-sola kaydırarak hizmetleri inceleyin.</p>
+        <button type="button" id="hero-services-next" aria-label="Sonraki hizmet" class="px-4 py-2 rounded-lg border bg-white dark:bg-slate-900">Sonraki →</button>
+      </div>
+    </div>
   </section>
 
   <section class="max-w-6xl mx-auto px-4 py-10" id="services-preview">
@@ -205,5 +252,19 @@
     <img src="assets/wpplogo.jpeg" alt="" />
   </a>
 </div>
+<script>
+  (function () {
+    const gallery = document.getElementById('hero-services-gallery');
+    const prevButton = document.getElementById('hero-services-prev');
+    const nextButton = document.getElementById('hero-services-next');
+    if (!gallery || !prevButton || !nextButton) return;
+    const scrollGallery = (direction) => {
+      const offset = gallery.clientWidth + 16;
+      gallery.scrollBy({ left: direction * offset, behavior: 'smooth' });
+    };
+    prevButton.addEventListener('click', function(){ scrollGallery(-1); });
+    nextButton.addEventListener('click', function(){ scrollGallery(1); });
+  })();
+</script>
 </body>
 </html>
