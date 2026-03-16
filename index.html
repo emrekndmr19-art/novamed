@@ -95,10 +95,26 @@
     .floating-contact-icon--call{background:linear-gradient(135deg,#2563eb,#1d4ed8);}
     .floating-contact-icon--wa{background:#fff;padding:.32rem;}
     .floating-contact-icon--wa img{width:100%;height:100%;border-radius:9999px;object-fit:cover;}
+    .service-gallery-shell{position:relative;}
+    .service-gallery-shell::before{content:'';position:absolute;inset:-1px;background:linear-gradient(125deg,#2563eb,#0ea5e9,#14b8a6);border-radius:1rem;opacity:.25;filter:blur(8px);z-index:0;pointer-events:none;animation:galleryGlow 5s ease-in-out infinite;}
+    .service-gallery-track{position:relative;z-index:1;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;}
+    .service-gallery-item{scroll-snap-align:start;transform-origin:center;transition:transform .35s ease,box-shadow .35s ease;}
+    .service-gallery-item.is-active{transform:translateY(-2px) scale(1.01);box-shadow:0 16px 36px rgba(15,23,42,.25);}
+    .service-gallery-track::-webkit-scrollbar{display:none;}
+    .service-gallery-button{position:relative;z-index:2;transition:transform .22s ease,box-shadow .22s ease,background-color .22s ease;}
+    .service-gallery-button:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(15,23,42,.15);}
+    .service-gallery-dots{position:relative;z-index:2;display:flex;gap:.45rem;justify-content:center;align-items:center;}
+    .service-gallery-dot{width:.58rem;height:.58rem;border-radius:9999px;background:#cbd5e1;transition:all .25s ease;}
+    .service-gallery-dot.is-active{width:1.45rem;background:linear-gradient(90deg,#2563eb,#0ea5e9);}
+    @keyframes galleryGlow{0%,100%{opacity:.2;transform:scale(1);}50%{opacity:.38;transform:scale(1.01);}}
     @keyframes floatingIconBob{0%,100%{transform:translateY(var(--floating-icon-shift,0px));}50%{transform:translateY(calc(var(--floating-icon-shift,0px) - 5px));}}
     @media (prefers-reduced-motion: reduce){
       .services-card-text,.services-card-text.reverse{animation:none;}
       .floating-contact-icon{animation:none;}
+      .service-gallery-track{scroll-behavior:auto;}
+      .service-gallery-shell::before{animation:none;}
+      .service-gallery-item{transition:none;}
+      .service-gallery-dot{transition:none;}
     }
   </style>
 </head>
@@ -133,7 +149,51 @@
       </div>
       <p class="mt-4 text-sm">Telefon: <a href="tel:+905541132019" data-track="call" class="font-semibold">+90 (554) 113 20 19</a> • Hizmet Bölgesi: Esenyurt, Beylikdüzü, Avcılar ve İstanbul geneli</p>
     </div>
-    <img src="assets/iht1.jpeg" alt="Evde sağlık hizmeti uygulaması" class="rounded-2xl shadow-lg w-full h-80 object-cover" />
+    <div class="service-gallery-shell">
+      <div id="hero-services-gallery" class="service-gallery-track rounded-2xl shadow-lg flex gap-4 overflow-x-auto snap-x snap-mandatory">
+        <a href="services.html#evde-serum" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
+          <img src="assets/glutatyon.jpeg" alt="Evde serum hizmeti" class="w-full h-72 object-cover" />
+          <div class="p-4">
+            <h2 class="text-xl font-bold">Evde Serum</h2>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Sıvı desteği ve serum uygulamaları için hızlı planlama.</p>
+          </div>
+        </a>
+        <a href="services.html#evde-hemsire" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
+          <img src="assets/iht2.jpeg" alt="Evde hemşire hizmeti" class="w-full h-72 object-cover" />
+          <div class="p-4">
+            <h2 class="text-xl font-bold">Evde Hemşire</h2>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Evde bakım için düzenli hemşirelik takibi ve destek.</p>
+          </div>
+        </a>
+        <a href="services.html#evde-pansuman" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
+          <img src="assets/pansuman.jpg" alt="Evde pansuman hizmeti" class="w-full h-72 object-cover" />
+          <div class="p-4">
+            <h2 class="text-xl font-bold">Evde Pansuman</h2>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Steril yara bakımı ve pansuman işlemleri evde uygulanır.</p>
+          </div>
+        </a>
+        <a href="services.html#evde-igne" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
+          <img src="assets/evde-dikis-alma.jpg" alt="Evde iğne hizmeti" class="w-full h-72 object-cover" />
+          <div class="p-4">
+            <h2 class="text-xl font-bold">Evde İğne</h2>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Hekim planına uygun enjeksiyon hizmeti güvenli şekilde sunulur.</p>
+          </div>
+        </a>
+        <a href="services.html#evde-vitamin-serum" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
+          <img src="assets/AMBULANSS.jpeg" alt="Evde vitamin serum hizmeti" class="w-full h-72 object-cover" />
+          <div class="p-4">
+            <h2 class="text-xl font-bold">Evde Vitamin Serum</h2>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Uygunluk durumuna göre vitamin içerikli serum desteği sağlanır.</p>
+          </div>
+        </a>
+      </div>
+      <div class="mt-4 flex items-center justify-between gap-3">
+        <button type="button" id="hero-services-prev" aria-label="Önceki hizmet" class="service-gallery-button px-4 py-2 rounded-lg border bg-white dark:bg-slate-900">← Önceki</button>
+        <div id="hero-services-dots" class="service-gallery-dots" aria-label="Hizmet slayt göstergesi"></div>
+        <button type="button" id="hero-services-next" aria-label="Sonraki hizmet" class="service-gallery-button px-4 py-2 rounded-lg border bg-white dark:bg-slate-900">Sonraki →</button>
+      </div>
+      <p class="mt-2 text-center text-xs text-slate-600 dark:text-slate-300">Sağa-sola kaydırarak veya butonlarla hizmetleri inceleyin.</p>
+    </div>
   </section>
 
   <section class="max-w-6xl mx-auto px-4 py-10" id="services-preview">
@@ -205,5 +265,74 @@
     <img src="assets/wpplogo.jpeg" alt="" />
   </a>
 </div>
+<script>
+  (function () {
+    const gallery = document.getElementById('hero-services-gallery');
+    const prevButton = document.getElementById('hero-services-prev');
+    const nextButton = document.getElementById('hero-services-next');
+    const dotsContainer = document.getElementById('hero-services-dots');
+    if (!gallery || !prevButton || !nextButton || !dotsContainer) return;
+
+    const slides = Array.from(gallery.querySelectorAll('.service-gallery-item'));
+    const dots = slides.map((_, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'service-gallery-dot';
+      dot.setAttribute('aria-label', `${index + 1}. hizmete git`);
+      dot.addEventListener('click', function(){
+        scrollToSlide(index);
+        restartAutoPlay();
+      });
+      dotsContainer.appendChild(dot);
+      return dot;
+    });
+
+    const getActiveIndex = () => {
+      return Math.round(gallery.scrollLeft / Math.max(1, gallery.clientWidth + 16));
+    };
+
+    const setActive = (index) => {
+      slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
+      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+    };
+
+    const scrollToSlide = (index) => {
+      const slide = slides[index];
+      if (!slide) return;
+      gallery.scrollTo({ left: slide.offsetLeft, behavior: 'smooth' });
+      setActive(index);
+    };
+
+    const scrollGallery = (direction) => {
+      const active = getActiveIndex();
+      const next = (active + direction + slides.length) % slides.length;
+      scrollToSlide(next);
+    };
+
+    prevButton.addEventListener('click', function(){ scrollGallery(-1); restartAutoPlay(); });
+    nextButton.addEventListener('click', function(){ scrollGallery(1); restartAutoPlay(); });
+
+    gallery.addEventListener('scroll', function(){
+      window.requestAnimationFrame(function(){
+        const active = Math.min(slides.length - 1, Math.max(0, Math.round(gallery.scrollLeft / Math.max(1, gallery.clientWidth + 16))));
+        setActive(active);
+      });
+    }, { passive: true });
+
+    let autoPlay = null;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const startAutoPlay = () => {
+      if (prefersReduced) return;
+      autoPlay = window.setInterval(function(){ scrollGallery(1); }, 4200);
+    };
+    const restartAutoPlay = () => {
+      if (autoPlay) window.clearInterval(autoPlay);
+      startAutoPlay();
+    };
+
+    setActive(0);
+    startAutoPlay();
+  })();
+</script>
 </body>
 </html>
