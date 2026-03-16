@@ -3,26 +3,28 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evimde Sağlık | İstanbul Evde Sağlık ve Evde Serum Hizmeti</title>
-  <meta name="description" content="Evimde Sağlık ile İstanbul'da evde serum, pansuman, hemşirelik ve evde sağlık desteği. Hızlı geri dönüş, güvenli planlama ve kolay iletişim için hemen arayın." />
+  <title>İstanbul Evde Serum ve Evde Sağlık Hizmeti | Evimde Sağlık</title>
+  <meta name="description" content="Evimde Sağlık ile İstanbul'da evde serum, evde hemşire ve evde sağlık hizmeti için 7/24 iletişim. Esenyurt, Beylikdüzü ve Avcılar'da planlı destek alın." />
   <link rel="canonical" href="https://evimdesaglik.net/" />
-  <meta name="robots" content="index,follow" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="tr_TR" />
   <meta property="og:site_name" content="Evimde Sağlık" />
-  <meta property="og:title" content="İstanbul Evde Sağlık ve Evde Serum Hizmeti" />
-  <meta property="og:description" content="İstanbul genelinde evde sağlık hizmetleri için Evimde Sağlık. Telefon veya WhatsApp ile hızlı şekilde ulaşın." />
+  <meta property="og:title" content="İstanbul Evde Serum ve Evde Sağlık Hizmeti" />
+  <meta property="og:description" content="İstanbul genelinde evde serum, hemşirelik ve pansuman desteği için hızlı ve güvenli planlama." />
   <meta property="og:url" content="https://evimdesaglik.net/" />
   <meta property="og:image" content="https://evimdesaglik.net/assets/logoyeni.jpeg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="İstanbul Evde Sağlık ve Evde Serum Hizmeti" />
-  <meta name="twitter:description" content="Evde serum, pansuman ve hemşirelik hizmeti için Evimde Sağlık ile iletişime geçin." />
+  <meta name="twitter:title" content="İstanbul Evde Serum ve Evde Sağlık Hizmeti" />
+  <meta name="twitter:description" content="Evimde Sağlık ile İstanbul'da 7/24 iletişime açık evde sağlık hizmetleri." />
   <meta name="twitter:image" content="https://evimdesaglik.net/assets/logoyeni.jpeg" />
-  <link href="favv.jpeg" rel="icon" type="image/jpeg" />
-  <link href="favv.jpeg" rel="apple-touch-icon" />
-  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <link rel="icon" href="favv.jpeg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="favv.jpeg" />
+  <link rel="manifest" href="site.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="image" href="assets/glutatyon.jpeg" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17878969292"></script>
@@ -41,92 +43,53 @@
         gtag('event', 'whatsapp_click', {event_category: 'contact', event_label: waLink.getAttribute('href')});
       }
     });
-    let floatingIconTicking = false;
-    function syncFloatingContactIcons(){
-      const offset = Math.min(window.scrollY * 0.08, 10);
-      document.documentElement.style.setProperty('--floating-icon-shift', `${offset}px`);
-      floatingIconTicking = false;
-    }
-    window.addEventListener('scroll', function(){
-      if (!floatingIconTicking){
-        window.requestAnimationFrame(syncFloatingContactIcons);
-        floatingIconTicking = true;
-      }
-    }, { passive: true });
-    window.addEventListener('load', syncFloatingContactIcons);
   </script>
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Evimde Sağlık",
-      "url": "https://evimdesaglik.net/",
-      "logo": "https://evimdesaglik.net/assets/logoyeni.jpeg",
-      "image": "https://evimdesaglik.net/assets/logoyeni.jpeg",
-      "telephone": "+90 554 113 20 19",
-      "description": "İstanbul genelinde evde serum, pansuman, hemşirelik ve evde sağlık hizmetleri.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Piri Reis Mah., 2308 Sok. No:8",
-        "addressLocality": "Esenyurt",
-        "addressRegion": "İstanbul",
-        "addressCountry": "TR"
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"MedicalBusiness",
+        "name":"Evimde Sağlık",
+        "url":"https://evimdesaglik.net/",
+        "telephone":"+90 554 113 20 19",
+        "image":"https://evimdesaglik.net/assets/logoyeni.jpeg",
+        "address":{"@type":"PostalAddress","streetAddress":"Piri Reis Mah., 2308 Sok. No:8","addressLocality":"Esenyurt","addressRegion":"İstanbul","addressCountry":"TR"},
+        "openingHours":"Mo-Su 00:00-23:59",
+        "areaServed":["Esenyurt","Beylikdüzü","Avcılar","İstanbul"]
       },
-      "areaServed": ["Esenyurt", "Beylikdüzü", "Avcılar", "İstanbul"],
-      "openingHours": "Mo-Su 00:00-23:59"
-    }
+      {
+        "@type":"WebSite",
+        "name":"Evimde Sağlık",
+        "url":"https://evimdesaglik.net/"
+      },
+      {
+        "@type":"BreadcrumbList",
+        "itemListElement":[{"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://evimdesaglik.net/"}]
+      }
+    ]
+  }
   </script>
   <style>
-    body{font-family:'Inter',sans-serif;}
-    .services-card{overflow:hidden;position:relative;}
-    .services-card-text{display:inline-block;animation:slideRightLeft 2.8s ease-in-out infinite;will-change:transform;}
-    .services-card-text.reverse{animation-name:slideLeftRight;}
-    @keyframes slideRightLeft{
-      0%,100%{transform:translateX(0);}
-      50%{transform:translateX(12px);}
-    }
-    @keyframes slideLeftRight{
-      0%,100%{transform:translateX(0);}
-      50%{transform:translateX(-12px);}
-    }
-    .floating-contact-stack{display:flex;flex-direction:column;gap:.75rem;}
-    .floating-contact-icon{width:3.4rem;height:3.4rem;border-radius:9999px;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 14px 28px rgba(15,23,42,.22);transform:translateY(var(--floating-icon-shift,0px));animation:floatingIconBob 2.2s ease-in-out infinite;will-change:transform;}
-    .floating-contact-icon .material-icons-outlined{font-size:1.5rem;color:#fff;line-height:1;}
-    .floating-contact-icon--call{background:linear-gradient(135deg,#2563eb,#1d4ed8);}
-    .floating-contact-icon--wa{background:#fff;padding:.32rem;}
-    .floating-contact-icon--wa img{width:100%;height:100%;border-radius:9999px;object-fit:cover;}
-    .service-gallery-shell{position:relative;}
-    .service-gallery-shell::before{content:'';position:absolute;inset:-1px;background:linear-gradient(125deg,#2563eb,#0ea5e9,#14b8a6);border-radius:1rem;opacity:.25;filter:blur(8px);z-index:0;pointer-events:none;animation:galleryGlow 5s ease-in-out infinite;}
-    .service-gallery-track{position:relative;z-index:1;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;}
-    .service-gallery-item{scroll-snap-align:start;transform-origin:center;transition:transform .35s ease,box-shadow .35s ease;}
-    .service-gallery-item.is-active{transform:translateY(-2px) scale(1.01);box-shadow:0 16px 36px rgba(15,23,42,.25);}
-    .service-gallery-track::-webkit-scrollbar{display:none;}
-    .service-gallery-button{position:relative;z-index:2;transition:transform .22s ease,box-shadow .22s ease,background-color .22s ease;}
-    .service-gallery-button:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(15,23,42,.15);}
-    .service-gallery-dots{position:relative;z-index:2;display:flex;gap:.45rem;justify-content:center;align-items:center;}
-    .service-gallery-dot{width:.58rem;height:.58rem;border-radius:9999px;background:#cbd5e1;transition:all .25s ease;}
-    .service-gallery-dot.is-active{width:1.45rem;background:linear-gradient(90deg,#2563eb,#0ea5e9);}
-    @keyframes galleryGlow{0%,100%{opacity:.2;transform:scale(1);}50%{opacity:.38;transform:scale(1.01);}}
-    @keyframes floatingIconBob{0%,100%{transform:translateY(var(--floating-icon-shift,0px));}50%{transform:translateY(calc(var(--floating-icon-shift,0px) - 5px));}}
-    @media (prefers-reduced-motion: reduce){
-      .services-card-text,.services-card-text.reverse{animation:none;}
-      .floating-contact-icon{animation:none;}
-      .service-gallery-track{scroll-behavior:auto;}
-      .service-gallery-shell::before{animation:none;}
-      .service-gallery-item{transition:none;}
-      .service-gallery-dot{transition:none;}
-    }
+    body{font-family:'Inter',sans-serif}
+    .floating-contact-stack{display:flex;flex-direction:column;gap:.75rem}
+    .floating-contact-icon{width:3.2rem;height:3.2rem;border-radius:9999px;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(15,23,42,.22)}
+    .floating-contact-icon--call{background:linear-gradient(135deg,#2563eb,#1d4ed8)}
+    .floating-contact-icon--wa{background:#fff;padding:.2rem}
+    .floating-contact-icon--wa img{width:100%;height:100%;border-radius:9999px;object-fit:cover}
+    @media (max-width: 768px){main{padding-bottom:6rem}}
   </style>
 </head>
 <body class="bg-sky-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100">
 <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-950/90 backdrop-blur border-b border-slate-200 dark:border-slate-800">
-  <nav class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
+  <nav class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between" aria-label="Ana menü">
     <a href="index.html" class="flex items-center gap-2">
-      <img src="assets/logoyeni.jpeg" alt="Evimde Sağlık logosu" class="h-12 w-auto" />
-      <span class="font-bold text-primary text-lg">EVİMDE SAĞLIK</span>
+      <img src="assets/logoyeni.jpeg" alt="Evimde Sağlık logosu" class="h-12 w-auto" width="96" height="48" />
+      <span class="font-bold text-lg">EVİMDE SAĞLIK</span>
     </a>
     <div class="hidden md:flex items-center gap-6 font-medium">
       <a href="services.html" class="hover:text-blue-700">Hizmetler</a>
+      <a href="esenyurt-evde-saglik.html" class="hover:text-blue-700">Esenyurt</a>
       <a href="faq.html" class="hover:text-blue-700">SSS</a>
       <a href="contact.html" class="hover:text-blue-700">İletişim</a>
       <button onclick="toggleDarkMode()" aria-label="Tema değiştir" class="p-2"><span class="material-icons-outlined">dark_mode</span></button>
@@ -134,118 +97,87 @@
     <button id="mobile-menu-button" class="md:hidden" onclick="toggleMobileMenu()" aria-controls="mobile-menu" aria-expanded="false"><span class="material-icons-outlined">menu</span></button>
   </nav>
   <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-3">
-    <a href="services.html" class="block">Hizmetler</a><a href="faq.html" class="block">SSS</a><a href="contact.html" class="block">İletişim</a>
+    <a href="services.html" class="block">Hizmetler</a>
+    <a href="esenyurt-evde-saglik.html" class="block">Esenyurt</a>
+    <a href="beylikduzu-evde-saglik.html" class="block">Beylikdüzü</a>
+    <a href="avcilar-evde-saglik.html" class="block">Avcılar</a>
+    <a href="faq.html" class="block">SSS</a>
+    <a href="contact.html" class="block">İletişim</a>
   </div>
 </header>
+
 <main>
-  <section class="max-w-6xl mx-auto px-4 py-14 grid lg:grid-cols-2 gap-10 items-center">
+  <section class="max-w-6xl mx-auto px-4 py-14 grid lg:grid-cols-2 gap-8 items-center">
     <div>
-      <p class="font-semibold text-red-600">İstanbul Evde Sağlık Hizmeti</p>
-      <h1 class="text-4xl font-extrabold mt-3">Evde Serum ve Evde Sağlık Desteği</h1>
-      <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">Evimde Sağlık, İstanbul'da evde serum, pansuman ve hemşirelik işlemlerinde hızlı iletişim ve planlı hizmet sunar. Arama veya WhatsApp üzerinden doğrudan ulaşabilirsiniz.</p>
+      <p class="font-semibold text-red-600">İstanbul 7/24 Evde Sağlık Hizmeti</p>
+      <h1 class="text-4xl font-extrabold mt-3">Evde Serum, Evde Hemşire ve Evde Sağlık Desteği</h1>
+      <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">Evimde Sağlık, Esenyurt, Beylikdüzü, Avcılar ve İstanbul genelinde ihtiyaç odaklı evde sağlık hizmetleri sunar. Telefon veya WhatsApp ile yalnızca sizin talebinizle planlama başlatılır.</p>
       <div class="mt-7 flex flex-col sm:flex-row gap-3">
-        <a href="tel:+905541132019" data-track="call" class="text-center px-6 py-3 bg-blue-700 text-white rounded-lg font-semibold">Hemen Ara</a>
-        <a href="https://wa.me/905541132019" data-track="whatsapp" target="_blank" rel="noopener noreferrer" class="text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold">WhatsApp</a>
+        <a href="tel:+905541132019" data-track="call" aria-label="Telefon ile Evimde Sağlık'ı arayın" class="text-center px-6 py-3 bg-blue-700 text-white rounded-lg font-semibold">Hemen Ara</a>
+        <a href="https://wa.me/905541132019" data-track="whatsapp" aria-label="WhatsApp üzerinden mesaj gönderin" target="_blank" rel="noopener noreferrer" class="text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold">WhatsApp</a>
       </div>
-      <p class="mt-4 text-sm">Telefon: <a href="tel:+905541132019" data-track="call" class="font-semibold">+90 (554) 113 20 19</a> • Hizmet Bölgesi: Esenyurt, Beylikdüzü, Avcılar ve İstanbul geneli</p>
+      <p class="mt-4 text-sm">Telefon: <a href="tel:+905541132019" data-track="call" class="font-semibold">+90 (554) 113 20 19</a> • Hizmet Bölgesi: İstanbul geneli</p>
     </div>
-    <div class="service-gallery-shell">
-      <div id="hero-services-gallery" class="service-gallery-track rounded-2xl shadow-lg flex gap-4 overflow-x-auto snap-x snap-mandatory">
-        <a href="services.html#evde-serum" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
-          <img src="assets/glutatyon.jpeg" alt="Evde serum hizmeti" class="w-full h-72 object-cover" />
-          <div class="p-4">
-            <h2 class="text-xl font-bold">Evde Serum</h2>
-            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Sıvı desteği ve serum uygulamaları için hızlı planlama.</p>
-          </div>
-        </a>
-        <a href="services.html#evde-hemsire" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
-          <img src="assets/iht2.jpeg" alt="Evde hemşire hizmeti" class="w-full h-72 object-cover" />
-          <div class="p-4">
-            <h2 class="text-xl font-bold">Evde Hemşire</h2>
-            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Evde bakım için düzenli hemşirelik takibi ve destek.</p>
-          </div>
-        </a>
-        <a href="services.html#evde-pansuman" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
-          <img src="assets/pansuman.jpg" alt="Evde pansuman hizmeti" class="w-full h-72 object-cover" />
-          <div class="p-4">
-            <h2 class="text-xl font-bold">Evde Pansuman</h2>
-            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Steril yara bakımı ve pansuman işlemleri evde uygulanır.</p>
-          </div>
-        </a>
-        <a href="services.html#evde-igne" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
-          <img src="assets/evde-dikis-alma.jpg" alt="Evde iğne hizmeti" class="w-full h-72 object-cover" />
-          <div class="p-4">
-            <h2 class="text-xl font-bold">Evde İğne</h2>
-            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Hekim planına uygun enjeksiyon hizmeti güvenli şekilde sunulur.</p>
-          </div>
-        </a>
-        <a href="services.html#evde-vitamin-serum" class="service-gallery-item min-w-full bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden">
-          <img src="assets/AMBULANSS.jpeg" alt="Evde vitamin serum hizmeti" class="w-full h-72 object-cover" />
-          <div class="p-4">
-            <h2 class="text-xl font-bold">Evde Vitamin Serum</h2>
-            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Uygunluk durumuna göre vitamin içerikli serum desteği sağlanır.</p>
-          </div>
-        </a>
+    <a href="services.html#evde-serum" class="bg-white dark:bg-slate-900 rounded-2xl border overflow-hidden shadow-lg block">
+      <img src="assets/glutatyon.jpeg" alt="İstanbul'da evde serum hizmeti" class="w-full h-72 object-cover" width="1200" height="720" fetchpriority="high" />
+      <div class="p-4">
+        <h2 class="text-xl font-bold">İstanbul Evde Serum Hizmeti</h2>
+        <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Evde serum, pansuman ve hemşirelik detaylarını hizmet sayfamızda inceleyin.</p>
       </div>
-      <div class="mt-4 flex items-center justify-between gap-3">
-        <button type="button" id="hero-services-prev" aria-label="Önceki hizmet" class="service-gallery-button px-4 py-2 rounded-lg border bg-white dark:bg-slate-900 text-lg font-medium">← Önceki</button>
-        <div id="hero-services-dots" class="service-gallery-dots" aria-label="Hizmet slayt göstergesi"></div>
-        <button type="button" id="hero-services-next" aria-label="Sonraki hizmet" class="service-gallery-button px-4 py-2 rounded-lg border bg-white dark:bg-slate-900 text-lg font-medium">Sonraki →</button>
-      </div>
-      <p class="mt-2 text-center text-base text-slate-600 dark:text-slate-300">Sağa-sola kaydırarak veya butonlarla hizmetleri inceleyin.</p>
-    </div>
+    </a>
   </section>
 
-  <section class="max-w-6xl mx-auto px-4 py-10" id="services-preview">
+  <section class="max-w-6xl mx-auto px-4 py-8" id="services-preview">
     <h2 class="text-3xl font-bold">Hizmetlerimiz</h2>
-    <p class="mt-2 text-lg text-slate-600 dark:text-slate-300">Aşağıdaki başlıklardan detaylara ulaşabilirsiniz.</p>
     <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <a href="services.html#evde-serum" class="services-card bg-white dark:bg-slate-900 p-4 rounded-xl border text-lg font-medium"><span class="services-card-text">Evde Serum</span></a>
-      <a href="services.html#evde-hemsire" class="services-card bg-white dark:bg-slate-900 p-4 rounded-xl border text-lg font-medium"><span class="services-card-text reverse">Evde Hemşire</span></a>
-      <a href="services.html#evde-pansuman" class="services-card bg-white dark:bg-slate-900 p-4 rounded-xl border text-lg font-medium"><span class="services-card-text">Evde Pansuman</span></a>
-      <a href="services.html#evde-igne" class="services-card bg-white dark:bg-slate-900 p-4 rounded-xl border text-lg font-medium"><span class="services-card-text reverse">Evde İğne</span></a>
-      <a href="services.html#evde-vitamin-serum" class="services-card bg-white dark:bg-slate-900 p-4 rounded-xl border text-lg font-medium"><span class="services-card-text">Evde Vitamin Serum</span></a>
-      <a href="services.html" class="services-card bg-white dark:bg-slate-900 p-4 rounded-xl border text-lg font-medium"><span class="services-card-text reverse">Tüm Hizmetler</span></a>
+      <a href="services.html#evde-serum" class="bg-white dark:bg-slate-900 p-4 rounded-xl border text-lg font-medium">Evde Serum</a>
+      <a href="services.html#evde-hemsire" class="bg-white dark:bg-slate-900 p-4 rounded-xl border text-lg font-medium">Evde Hemşire</a>
+      <a href="services.html#evde-pansuman" class="bg-white dark:bg-slate-900 p-4 rounded-xl border text-lg font-medium">Evde Pansuman</a>
+      <a href="services.html#evde-igne" class="bg-white dark:bg-slate-900 p-4 rounded-xl border text-lg font-medium">Evde İğne</a>
+      <a href="services.html#evde-vitamin-serum" class="bg-white dark:bg-slate-900 p-4 rounded-xl border text-lg font-medium">Evde Vitamin Serum</a>
+      <a href="services.html" class="bg-white dark:bg-slate-900 p-4 rounded-xl border text-lg font-medium">Tüm Hizmetler</a>
     </div>
   </section>
 
-  <section class="max-w-6xl mx-auto px-4 py-10">
-    <h2 class="text-3xl font-bold">Neden Evimde Sağlık?</h2>
-    <div class="mt-5 grid md:grid-cols-3 gap-4 text-lg">
-      <div class="bg-white dark:bg-slate-900 rounded-xl border p-4">Ev ortamında planlanan bakım ile süreç daha konforlu ilerler.</div>
-      <div class="bg-white dark:bg-slate-900 rounded-xl border p-4">İletişim kanalları nettir: telefon ve WhatsApp üzerinden hızlı dönüş hedeflenir.</div>
-      <div class="bg-white dark:bg-slate-900 rounded-xl border p-4">İstanbul içi hizmet alanları açık şekilde belirtilir, planlama buna göre yapılır.</div>
+  <section class="max-w-6xl mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold">Hizmet Bölgeleri</h2>
+    <p class="mt-2 text-slate-600 dark:text-slate-300">Yerel arama niyetine uygun olarak ilçe bazlı içeriklerimizi inceleyebilirsiniz.</p>
+    <div class="mt-4 grid md:grid-cols-3 gap-3 text-sm">
+      <a class="bg-white dark:bg-slate-900 border rounded-lg p-4" href="esenyurt-evde-saglik.html">Esenyurt Evde Sağlık Hizmeti</a>
+      <a class="bg-white dark:bg-slate-900 border rounded-lg p-4" href="beylikduzu-evde-saglik.html">Beylikdüzü Evde Sağlık Hizmeti</a>
+      <a class="bg-white dark:bg-slate-900 border rounded-lg p-4" href="avcilar-evde-saglik.html">Avcılar Evde Sağlık Hizmeti</a>
     </div>
   </section>
 
   <section class="max-w-6xl mx-auto px-4 py-10" id="faq-home">
     <h2 class="text-2xl font-bold">Sık Sorulan Sorular</h2>
     <div class="mt-4 space-y-3">
-      <details class="bg-white dark:bg-slate-900 p-4 rounded-lg border"><summary class="font-semibold">Hizmet nasıl alınır?</summary><p class="mt-2 text-sm">Telefon veya WhatsApp ile talebinizi ilettikten sonra uygunluk ve planlama bilgisi paylaşılır.</p></details>
-      <details class="bg-white dark:bg-slate-900 p-4 rounded-lg border"><summary class="font-semibold">Ne kadar sürede dönüş yapılır?</summary><p class="mt-2 text-sm">Yoğunluğa göre değişmekle birlikte kısa süre içinde dönüş sağlanması hedeflenir.</p></details>
+      <details class="bg-white dark:bg-slate-900 p-4 rounded-lg border"><summary class="font-semibold">Hizmet nasıl alınır?</summary><p class="mt-2 text-sm">Telefon veya WhatsApp üzerinden hizmet talebinizi iletebilir, uygunluk durumuna göre planlama bilgisi alabilirsiniz.</p></details>
+      <details class="bg-white dark:bg-slate-900 p-4 rounded-lg border"><summary class="font-semibold">7/24 hizmet var mı?</summary><p class="mt-2 text-sm">İletişim kanallarımız 7/24 açıktır. Uygulama planlaması, ekip uygunluğuna göre netleştirilir.</p></details>
       <details class="bg-white dark:bg-slate-900 p-4 rounded-lg border"><summary class="font-semibold">Hangi bölgelerde hizmet verilir?</summary><p class="mt-2 text-sm">Esenyurt, Beylikdüzü, Avcılar başta olmak üzere İstanbul genelinde hizmet planlanır.</p></details>
     </div>
     <a href="faq.html" class="inline-block mt-4 text-blue-700 font-semibold">Tüm soruları görüntüleyin →</a>
   </section>
 </main>
+
 <footer class="border-t border-slate-200 dark:border-slate-800 mt-10">
   <div class="max-w-6xl mx-auto px-4 py-8 grid md:grid-cols-3 gap-6 text-sm">
     <div>
-      <h3 class="font-bold">Evimde Sağlık</h3>
+      <h2 class="font-bold">Evimde Sağlık</h2>
       <p class="mt-2">Piri Reis Mah., 2308 Sok. No:8, Esenyurt İstanbul</p>
       <p class="mt-2">Telefon: <a href="tel:+905541132019" data-track="call" class="font-semibold">+90 (554) 113 20 19</a></p>
     </div>
-    <div>
-      <h3 class="font-bold">Sayfalar</h3>
+    <nav aria-label="Footer sayfaları">
+      <h2 class="font-bold">Sayfalar</h2>
       <ul class="mt-2 space-y-1">
         <li><a href="index.html">Ana Sayfa</a></li><li><a href="services.html">Hizmetler</a></li><li><a href="faq.html">SSS</a></li><li><a href="contact.html">İletişim</a></li>
       </ul>
-    </div>
+    </nav>
     <div>
-      <h3 class="font-bold">İletişim</h3>
+      <h2 class="font-bold">İletişim</h2>
       <div class="mt-2 flex gap-2">
-        <a href="tel:+905541132019" data-track="call" class="px-3 py-2 bg-blue-700 text-white rounded">Ara</a>
-        <a href="https://wa.me/905541132019" data-track="whatsapp" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-emerald-600 text-white rounded">WhatsApp</a>
+        <a href="tel:+905541132019" data-track="call" aria-label="Telefon ile arama başlat" class="px-3 py-2 bg-blue-700 text-white rounded">Ara</a>
+        <a href="https://wa.me/905541132019" data-track="whatsapp" aria-label="WhatsApp ile iletişime geç" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-emerald-600 text-white rounded">WhatsApp</a>
       </div>
     </div>
   </div>
@@ -253,86 +185,17 @@
 
 <div class="fixed bottom-0 inset-x-0 md:hidden bg-white/95 dark:bg-slate-900/95 border-t border-slate-200 dark:border-slate-700 p-3 z-50">
   <div class="max-w-md mx-auto grid grid-cols-2 gap-2">
-    <a href="tel:+905541132019" data-track="call" class="text-center py-3 bg-blue-700 text-white rounded-lg font-semibold">Hemen Ara</a>
-    <a href="https://wa.me/905541132019" data-track="whatsapp" target="_blank" rel="noopener noreferrer" class="text-center py-3 bg-emerald-600 text-white rounded-lg font-semibold">WhatsApp</a>
+    <a href="tel:+905541132019" data-track="call" aria-label="Mobilde hemen ara" class="text-center py-3 bg-blue-700 text-white rounded-lg font-semibold">Hemen Ara</a>
+    <a href="https://wa.me/905541132019" data-track="whatsapp" aria-label="Mobilde WhatsApp ile yaz" target="_blank" rel="noopener noreferrer" class="text-center py-3 bg-emerald-600 text-white rounded-lg font-semibold">WhatsApp</a>
   </div>
 </div>
 <div class="fixed right-4 bottom-24 md:bottom-6 z-50 floating-contact-stack">
   <a href="tel:+905541132019" data-track="call" aria-label="Telefon ile ara" class="floating-contact-icon floating-contact-icon--call">
-    <span class="material-icons-outlined" aria-hidden="true">phone_in_talk</span>
+    <span class="material-icons-outlined text-white" aria-hidden="true">phone_in_talk</span>
   </a>
   <a href="https://wa.me/905541132019" data-track="whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp ile yaz" class="floating-contact-icon floating-contact-icon--wa">
-    <img src="assets/wpplogo.jpeg" alt="" />
+    <img src="assets/wpplogo.jpeg" alt="" loading="lazy" width="60" height="60" />
   </a>
 </div>
-<script>
-  (function () {
-    const gallery = document.getElementById('hero-services-gallery');
-    const prevButton = document.getElementById('hero-services-prev');
-    const nextButton = document.getElementById('hero-services-next');
-    const dotsContainer = document.getElementById('hero-services-dots');
-    if (!gallery || !prevButton || !nextButton || !dotsContainer) return;
-
-    const slides = Array.from(gallery.querySelectorAll('.service-gallery-item'));
-    const dots = slides.map((_, index) => {
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'service-gallery-dot';
-      dot.setAttribute('aria-label', `${index + 1}. hizmete git`);
-      dot.addEventListener('click', function(){
-        scrollToSlide(index);
-        restartAutoPlay();
-      });
-      dotsContainer.appendChild(dot);
-      return dot;
-    });
-
-    const getActiveIndex = () => {
-      return Math.round(gallery.scrollLeft / Math.max(1, gallery.clientWidth + 16));
-    };
-
-    const setActive = (index) => {
-      slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
-      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
-    };
-
-    const scrollToSlide = (index) => {
-      const slide = slides[index];
-      if (!slide) return;
-      gallery.scrollTo({ left: slide.offsetLeft, behavior: 'smooth' });
-      setActive(index);
-    };
-
-    const scrollGallery = (direction) => {
-      const active = getActiveIndex();
-      const next = (active + direction + slides.length) % slides.length;
-      scrollToSlide(next);
-    };
-
-    prevButton.addEventListener('click', function(){ scrollGallery(-1); restartAutoPlay(); });
-    nextButton.addEventListener('click', function(){ scrollGallery(1); restartAutoPlay(); });
-
-    gallery.addEventListener('scroll', function(){
-      window.requestAnimationFrame(function(){
-        const active = Math.min(slides.length - 1, Math.max(0, Math.round(gallery.scrollLeft / Math.max(1, gallery.clientWidth + 16))));
-        setActive(active);
-      });
-    }, { passive: true });
-
-    let autoPlay = null;
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const startAutoPlay = () => {
-      if (prefersReduced) return;
-      autoPlay = window.setInterval(function(){ scrollGallery(1); }, 4200);
-    };
-    const restartAutoPlay = () => {
-      if (autoPlay) window.clearInterval(autoPlay);
-      startAutoPlay();
-    };
-
-    setActive(0);
-    startAutoPlay();
-  })();
-</script>
 </body>
 </html>
