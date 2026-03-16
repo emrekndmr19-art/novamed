@@ -137,9 +137,6 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        .pb-safe {
-            padding-bottom: env(safe-area-inset-bottom);
-        }
     </style>
 
 <script type="application/ld+json">
@@ -573,14 +570,12 @@ Hızlı ve Güvenilir Ambulans Hizmeti İçin Bizi Arayın!
 </div>
 </div>
 </footer>
-<div class="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col gap-3 pb-safe">
-<a aria-label="Telefon ile ara" class="w-14 h-14 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:bg-blue-800 transition-colors" href="tel:+905541132019">
-<span class="material-icons-outlined text-2xl">call</span>
+<a aria-label="Telefon ile ara" class="fixed right-4 top-1/2 -translate-y-1/2 z-50 w-16 h-16 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:bg-blue-800 transition-colors" href="tel:+905541132019">
+<span class="material-icons-outlined text-[1.7rem]">call</span>
 </a>
-<a aria-label="WhatsApp ile yaz" class="w-14 h-14 rounded-full bg-emerald-500 text-white shadow-lg flex items-center justify-center hover:bg-emerald-600 transition-colors" href="https://wa.me/905541132019" rel="noopener noreferrer" target="_blank" onclick="trackContactConversion('whatsapp_click')">
+<a aria-label="WhatsApp ile yaz" class="fixed left-4 bottom-4 md:left-6 md:bottom-6 z-50 w-16 h-16 rounded-full bg-emerald-500 text-white shadow-lg flex items-center justify-center hover:bg-emerald-600 transition-colors overflow-hidden" href="https://wa.me/905541132019" rel="noopener noreferrer" target="_blank" onclick="trackContactConversion('whatsapp_click')">
 <img alt="WhatsApp" class="w-full h-full object-cover rounded-full" src="assets/wpplogo.jpeg" loading="lazy" decoding="async"/>
 </a>
-</div>
 
 
 <script>
