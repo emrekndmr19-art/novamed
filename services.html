@@ -3,90 +3,104 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hizmetler | İstanbul Evde Sağlık Hizmetleri</title>
-  <meta name="description" content="Evimde Sağlık hizmetleri: evde serum, evde hemşire, evde pansuman, evde iğne ve evde vitamin serum uygulamaları için İstanbul'da iletişime geçin." />
+  <title>İstanbul Evde Sağlık Hizmetleri | Evde Serum ve Hemşire</title>
+  <meta name="description" content="Evde serum, evde hemşire, pansuman ve vitamin serum hizmetlerini İstanbul için inceleyin. Esenyurt, Beylikdüzü ve Avcılar için hızlı planlama bilgisi alın." />
   <link rel="canonical" href="https://evimdesaglik.net/services.html" />
-  <meta name="robots" content="index,follow" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Evimde Sağlık" />
   <meta property="og:title" content="İstanbul Evde Sağlık Hizmetleri" />
-  <meta property="og:description" content="Evde sağlık hizmetlerini detaylı inceleyin ve size uygun planlama için bizimle iletişime geçin." />
+  <meta property="og:description" content="Evde serum, hemşire ve pansuman hizmetlerinin kapsamını öğrenin." />
   <meta property="og:url" content="https://evimdesaglik.net/services.html" />
   <meta property="og:image" content="https://evimdesaglik.net/assets/logoyeni.jpeg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="İstanbul Evde Sağlık Hizmetleri" />
-  <meta name="twitter:description" content="Evde serum, pansuman, hemşirelik ve daha fazlası için hizmet detayları burada." />
-  <link href="favv.jpeg" rel="icon" type="image/jpeg" />
+  <meta name="twitter:description" content="Evimde Sağlık hizmet detayları ve ilçe bazlı planlama bilgileri." />
+  <link rel="icon" href="favv.jpeg" type="image/jpeg" />
+  <link rel="manifest" href="site.webmanifest" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <script>
-    function toggleDarkMode(){document.documentElement.classList.toggle('dark');}
-    function toggleMobileMenu(){const menu=document.getElementById('mobile-menu');const hidden=menu.classList.toggle('hidden');document.getElementById('mobile-menu-button').setAttribute('aria-expanded',(!hidden).toString());}
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"BreadcrumbList",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://evimdesaglik.net/"},
+          {"@type":"ListItem","position":2,"name":"Hizmetler","item":"https://evimdesaglik.net/services.html"}
+        ]
+      },
+      {
+        "@type":"ItemList",
+        "name":"Evde Sağlık Hizmetleri",
+        "itemListElement":[
+          {"@type":"Service","name":"Evde Serum","areaServed":"İstanbul"},
+          {"@type":"Service","name":"Evde Hemşire","areaServed":"İstanbul"},
+          {"@type":"Service","name":"Evde Pansuman","areaServed":"İstanbul"}
+        ]
+      }
+    ]
+  }
   </script>
-  <style>
-    body{font-family:'Inter',sans-serif;overflow-x:hidden;}
-    .service-card-image{width:100%;height:13rem;object-fit:cover;border-radius:.75rem;}
-  </style>
+  <style>body{font-family:'Inter',sans-serif;overflow-x:hidden}.service-card-image{width:100%;height:13rem;object-fit:cover;border-radius:.75rem}</style>
 </head>
 <body class="bg-sky-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100">
 <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-950/90 backdrop-blur border-b border-slate-200 dark:border-slate-800">
-  <nav class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
+  <nav class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between" aria-label="Ana menü">
     <a href="index.html" class="font-bold text-lg">Evimde Sağlık</a>
-    <div class="hidden md:flex gap-6"><a href="index.html">Ana Sayfa</a><a href="faq.html">SSS</a><a href="contact.html">İletişim</a><button onclick="toggleDarkMode()">🌙</button></div>
-    <button id="mobile-menu-button" class="md:hidden" onclick="toggleMobileMenu()" aria-controls="mobile-menu" aria-expanded="false">☰</button>
+    <div class="hidden md:flex gap-6"><a href="index.html">Ana Sayfa</a><a href="faq.html">SSS</a><a href="contact.html">İletişim</a></div>
   </nav>
-  <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2"><a href="index.html" class="block">Ana Sayfa</a><a href="faq.html" class="block">SSS</a><a href="contact.html" class="block">İletişim</a></div>
 </header>
 <main class="max-w-6xl mx-auto px-4 py-12">
-  <h1 class="text-3xl font-extrabold">İstanbul Evde Sağlık Hizmetleri</h1>
-  <p class="mt-3 text-slate-600 dark:text-slate-300">Aşağıdaki hizmetler, talebe göre planlama yapılarak ev ortamında sunulur.</p>
+  <nav aria-label="breadcrumb" class="text-sm text-slate-600"><a href="index.html">Ana Sayfa</a> / <span>Hizmetler</span></nav>
+  <h1 class="text-3xl font-extrabold mt-2">İstanbul Evde Sağlık Hizmetleri</h1>
+  <p class="mt-3 text-slate-600 dark:text-slate-300">Aşağıdaki hizmetler, tıbbi planlamaya uygun şekilde ev ortamında sunulur.</p>
 
-  <div class="mt-8 grid md:grid-cols-2 gap-6">
+  <section class="mt-8 grid md:grid-cols-2 gap-6" aria-label="Hizmet kartları">
     <article id="evde-serum" class="bg-white dark:bg-slate-900 rounded-xl border p-5">
-      <img src="assets/glutatyon.jpeg" alt="Evde serum hizmeti" class="service-card-image" loading="lazy" />
+      <img src="assets/glutatyon.jpeg" alt="İstanbul evde serum hizmeti" class="service-card-image" loading="lazy" width="1200" height="700" />
       <h2 class="mt-4 text-xl font-bold">Evde Serum</h2>
-      <p class="mt-2 text-sm">Sıvı desteği ve planlı serum uygulamaları ev ortamında güvenli şekilde gerçekleştirilir.</p>
+      <p class="mt-2 text-sm">Evde serum hizmeti için ön bilgi alınır, uygunluk doğrultusunda planlama yapılır.</p>
     </article>
     <article id="evde-hemsire" class="bg-white dark:bg-slate-900 rounded-xl border p-5">
-      <img src="assets/iht2.jpeg" alt="Evde hemşire hizmeti" class="service-card-image" loading="lazy" />
+      <img src="assets/iht2.jpeg" alt="Evde hemşire desteği" class="service-card-image" loading="lazy" width="1200" height="700" />
       <h2 class="mt-4 text-xl font-bold">Evde Hemşire</h2>
-      <p class="mt-2 text-sm">Evde bakım ihtiyacı olan bireyler için hemşirelik desteği ve takip planlaması yapılır.</p>
+      <p class="mt-2 text-sm">Evde hemşire desteği, bakım ihtiyaçlarına göre düzenli takip ile sunulur.</p>
     </article>
     <article id="evde-pansuman" class="bg-white dark:bg-slate-900 rounded-xl border p-5">
-      <img src="assets/pansuman.jpg" alt="Evde pansuman hizmeti" class="service-card-image" loading="lazy" />
+      <img src="assets/pansuman.jpg" alt="Evde pansuman uygulaması" class="service-card-image" loading="lazy" width="1200" height="700" />
       <h2 class="mt-4 text-xl font-bold">Evde Pansuman</h2>
-      <p class="mt-2 text-sm">Yara bakımının düzenli, steril ve kontrollü şekilde evde sürdürülmesine yardımcı olunur.</p>
+      <p class="mt-2 text-sm">Yara bakımının steril ve kontrollü şekilde sürdürülmesi için pansuman desteği verilir.</p>
     </article>
     <article id="evde-igne" class="bg-white dark:bg-slate-900 rounded-xl border p-5">
-      <img src="assets/evde-dikis-alma.jpg" alt="Evde iğne hizmeti" class="service-card-image" loading="lazy" />
+      <img src="assets/evde-dikis-alma.jpg" alt="Evde iğne uygulaması" class="service-card-image" loading="lazy" width="1200" height="700" />
       <h2 class="mt-4 text-xl font-bold">Evde İğne</h2>
-      <p class="mt-2 text-sm">Hekim planına uygun enjeksiyon uygulamaları için evde pratik çözümler sunulur.</p>
+      <p class="mt-2 text-sm">Hekim tarafından planlanan enjeksiyon uygulamaları evde gerçekleştirilir.</p>
     </article>
     <article id="evde-vitamin-serum" class="bg-white dark:bg-slate-900 rounded-xl border p-5 md:col-span-2">
-      <img src="assets/AMBULANSS.jpeg" alt="Evde vitamin serum hizmeti" class="service-card-image" loading="lazy" />
+      <img src="assets/AMBULANSS.jpeg" alt="Evde vitamin serum hizmeti" class="service-card-image" loading="lazy" width="1200" height="700" />
       <h2 class="mt-4 text-xl font-bold">Evde Vitamin Serum</h2>
-      <p class="mt-2 text-sm">Hekim onayı ve uygunluk doğrultusunda vitamin içerikli serum uygulamaları planlanır.</p>
+      <p class="mt-2 text-sm">Vitamin serum uygulamaları yalnızca uygunluk ve bilgilendirme sonrası planlanır.</p>
     </article>
-  </div>
+  </section>
 
   <section class="mt-10 bg-white dark:bg-slate-900 rounded-xl border p-6">
-    <h2 class="text-2xl font-bold">Hizmet Bölgeleri</h2>
-    <p class="mt-2 text-sm">Esenyurt, Beylikdüzü, Avcılar ve İstanbul'un diğer uygun bölgelerinde planlama yapılır.</p>
+    <h2 class="text-2xl font-bold">İlçe Bazlı Hizmet Bilgileri</h2>
+    <ul class="mt-3 grid md:grid-cols-3 gap-3 text-sm">
+      <li><a class="underline" href="esenyurt-evde-saglik.html">Esenyurt evde sağlık hizmeti</a></li>
+      <li><a class="underline" href="beylikduzu-evde-saglik.html">Beylikdüzü evde sağlık hizmeti</a></li>
+      <li><a class="underline" href="avcilar-evde-saglik.html">Avcılar evde sağlık hizmeti</a></li>
+    </ul>
     <div class="mt-5 flex flex-wrap gap-3">
-      <a href="tel:+905541132019" class="px-4 py-2 bg-blue-700 text-white rounded">Hemen Ara</a>
-      <a href="https://wa.me/905541132019" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-emerald-600 text-white rounded">WhatsApp</a>
+      <a href="tel:+905541132019" class="px-4 py-2 bg-blue-700 text-white rounded" aria-label="Hizmet planlaması için telefonla arayın">Hemen Ara</a>
+      <a href="https://wa.me/905541132019" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp üzerinden hizmet planlayın" class="px-4 py-2 bg-emerald-600 text-white rounded">WhatsApp</a>
       <a href="contact.html" class="px-4 py-2 border rounded">İletişim Sayfası</a>
     </div>
   </section>
 </main>
-<footer class="border-t border-slate-200 dark:border-slate-800 mt-8">
-  <div class="max-w-6xl mx-auto px-4 py-8 text-sm grid md:grid-cols-3 gap-4">
-    <div><strong>Evimde Sağlık</strong><p class="mt-2">Piri Reis Mah., 2308 Sok. No:8, Esenyurt İstanbul</p></div>
-    <div><a href="index.html">Ana Sayfa</a> · <a href="services.html">Hizmetler</a> · <a href="faq.html">SSS</a></div>
-    <div>Tel: <a href="tel:+905541132019">+90 (554) 113 20 19</a></div>
-  </div>
-</footer>
+<footer class="border-t border-slate-200 dark:border-slate-800 mt-8"><div class="max-w-6xl mx-auto px-4 py-8 text-sm grid md:grid-cols-3 gap-4"><div><strong>Evimde Sağlık</strong><p class="mt-2">Piri Reis Mah., 2308 Sok. No:8, Esenyurt İstanbul</p></div><div><a href="index.html">Ana Sayfa</a> · <a href="services.html">Hizmetler</a> · <a href="faq.html">SSS</a></div><div>Tel: <a href="tel:+905541132019">+90 (554) 113 20 19</a></div></div></footer>
 </body>
 </html>
