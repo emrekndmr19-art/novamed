@@ -193,8 +193,31 @@
             startAutoPlay();
         }
 
+        function initializeSafeCallLinks() {
+            const callLinks = Array.from(document.querySelectorAll('a[href^="tel:"]'));
+            if (!callLinks.length) return;
+
+            const callGuard = {
+                lastTapAt: 0,
+                cooldownMs: 4000,
+            };
+
+            callLinks.forEach((link) => {
+                link.addEventListener('click', (event) => {
+                    const now = Date.now();
+                    if (now - callGuard.lastTapAt < callGuard.cooldownMs) {
+                        event.preventDefault();
+                        return;
+                    }
+
+                    callGuard.lastTapAt = now;
+                });
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             initializeServiceSlider();
+            initializeSafeCallLinks();
         }, { once: true });
     </script>
 <style>
