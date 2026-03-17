@@ -86,6 +86,32 @@
             icon.textContent = isOpen ? 'close' : 'menu';
         }
 
+        function initializeSafeCallLinks() {
+            const callLinks = Array.from(document.querySelectorAll('a[href^="tel:"]'));
+            if (!callLinks.length) return;
+
+            let callInProgress = false;
+            const cooldownMs = 2500;
+
+            callLinks.forEach((link) => {
+                link.addEventListener('click', (event) => {
+                    if (!event.isTrusted || callInProgress) {
+                        event.preventDefault();
+                        return;
+                    }
+
+                    callInProgress = true;
+                    window.setTimeout(() => {
+                        callInProgress = false;
+                    }, cooldownMs);
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeSafeCallLinks();
+        }, { once: true });
+
     </script>
 <style>
         body {
@@ -453,7 +479,7 @@ Hızlı ve Güvenilir Ambulans Hizmeti İçin Bizi Arayın!
 <li>Beylikdüzü ve Avcılar bölgesinde planlı bakım hizmetleri</li>
 <li>Büyükçekmece çevresinde 7/24 iletişim ve yönlendirme</li>
 </ul>
-<p class="mt-4 text-sm text-slate-600 dark:text-slate-300">Hızlı bilgi için <a class="text-primary hover:underline" href="ara.html">telefon hattımızı arayabilir</a> veya <a class="text-primary hover:underline" href="https://wa.me/905541132019" target="_blank" rel="noopener noreferrer" onclick="trackContactConversion('whatsapp_click')">WhatsApp üzerinden yazabilirsiniz</a>.</p>
+<p class="mt-4 text-sm text-slate-600 dark:text-slate-300">Hızlı bilgi için <a class="text-primary hover:underline" href="tel:+905541132019">telefon hattımızı arayabilir</a> veya <a class="text-primary hover:underline" href="https://wa.me/905541132019" target="_blank" rel="noopener noreferrer" onclick="trackContactConversion('whatsapp_click')">WhatsApp üzerinden yazabilirsiniz</a>.</p>
 </div>
 <div>
 <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Sık Sorulan Sorular</h2>
@@ -490,7 +516,7 @@ Hızlı ve Güvenilir Ambulans Hizmeti İçin Bizi Arayın!
 </li>
 <li class="flex items-center gap-3">
 <span class="material-icons-outlined text-primary text-xl">call</span>
-<a class="hover:text-primary transition-colors" href="ara.html">+90 (554) 113 20 19</a>
+<a class="hover:text-primary transition-colors" href="tel:+905541132019">+90 (554) 113 20 19</a>
 </li>
 <li class="flex items-center gap-3">
 <span class="material-icons-outlined text-primary text-xl">chat</span>
@@ -518,13 +544,13 @@ Hızlı ve Güvenilir Ambulans Hizmeti İçin Bizi Arayın!
                 </p>
 <div class="flex gap-6">
 <a class="text-slate-400 hover:text-primary transition-colors" href="https://wa.me/905541132019" rel="noopener noreferrer" target="_blank" aria-label="WhatsApp iletişim"><span class="material-icons-outlined">chat</span></a>
-<a class="text-slate-400 hover:text-primary transition-colors" href="ara.html" aria-label="Telefon ile arama"><span class="material-icons-outlined">call</span></a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="tel:+905541132019" aria-label="Telefon ile arama"><span class="material-icons-outlined">call</span></a>
 <a class="text-slate-400 hover:text-primary transition-colors" href="index.html#contact" aria-label="İletişim bölümüne git"><span class="material-icons-outlined">alternate_email</span></a>
 </div>
 </div>
 </div>
 </footer>
-<a aria-label="Telefon ile ara" class="fixed left-4 bottom-24 md:left-6 md:bottom-24 z-50 w-16 h-16 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:bg-blue-800 transition-colors" href="ara.html">
+<a aria-label="Telefon ile ara" class="fixed left-4 bottom-24 md:left-6 md:bottom-24 z-50 w-16 h-16 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:bg-blue-800 transition-colors" href="tel:+905541132019">
 <span class="material-icons-outlined text-[1.7rem]">call</span>
 </a>
 <a aria-label="WhatsApp ile yaz" class="fixed left-4 bottom-4 md:left-6 md:bottom-6 z-50 w-16 h-16 rounded-full bg-emerald-500 text-white shadow-lg flex items-center justify-center hover:bg-emerald-600 transition-colors overflow-hidden" href="https://wa.me/905541132019" rel="noopener noreferrer" target="_blank" onclick="trackContactConversion('whatsapp_click')">
