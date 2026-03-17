@@ -2,6 +2,7 @@
 <html class="scroll-smooth" lang="tr"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="format-detection" content="telephone=no"/>
 <meta name="description" content="İstanbul Esenyurt merkezli evde sağlık hizmeti: evde serum, evde hemşire, pansuman ve 7/24 destek. Hızlı yönlendirme ve güvenli bakım için bize ulaşın."/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
 <meta property="og:type" content="website"/>
@@ -43,27 +44,6 @@
             });
             return true;
         }
-
-        function initializeCallLinks() {
-            const callLinks = Array.from(document.querySelectorAll('a[href^="tel:"]'));
-            if (!callLinks.length) return;
-
-            let lastCallAttemptAt = 0;
-            const cooldownMs = 1200;
-
-            callLinks.forEach((link) => {
-                link.dataset.callLink = 'true';
-                link.addEventListener('click', (event) => {
-                    const now = Date.now();
-                    if (now - lastCallAttemptAt < cooldownMs) {
-                        event.preventDefault();
-                        return;
-                    }
-                    lastCallAttemptAt = now;
-                });
-            });
-        }
-
 </script>
 <script>
         tailwind.config = {
@@ -212,32 +192,8 @@
             goTo(0);
             startAutoPlay();
         }
-
-        function initializeSafeCallLinks() {
-            const callLinks = Array.from(document.querySelectorAll('a[href^="tel:"]'));
-            if (!callLinks.length) return;
-
-            const callGuard = {
-                lastTapAt: 0,
-                cooldownMs: 4000,
-            };
-
-            callLinks.forEach((link) => {
-                link.addEventListener('click', (event) => {
-                    const now = Date.now();
-                    if (now - callGuard.lastTapAt < callGuard.cooldownMs) {
-                        event.preventDefault();
-                        return;
-                    }
-
-                    callGuard.lastTapAt = now;
-                });
-            });
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
             initializeServiceSlider();
-            initializeSafeCallLinks();
         }, { once: true });
     </script>
 <style>
