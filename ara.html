@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="Evimde Sağlık çağrı hattına hızlı ve sade arama ekranı. Hemen ara, numarayı kopyala veya WhatsApp ile yaz.">
+  <title>Hemen Ara | Evimde Sağlık</title>
+  <link rel="canonical" href="https://evimdesaglik.net/ara.html">
+  <link href="favv.jpeg" rel="icon" type="image/jpeg">
+  <style>
+    :root {
+      color-scheme: light;
+      --primary: #0055A4;
+      --secondary: #0F766E;
+      --text: #0f172a;
+      --muted: #475569;
+      --bg: #f8fafc;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #eef6ff 0%, var(--bg) 52%, #ffffff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      width: min(100%, 460px);
+      background: var(--white);
+      border-radius: 22px;
+      border: 1px solid #dbeafe;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+      padding: 28px 22px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .brand img { width: 52px; height: 52px; border-radius: 12px; object-fit: cover; }
+    .brand-title { font-size: 1.1rem; font-weight: 800; color: var(--primary); line-height: 1.2; }
+    .subtitle { margin: 0 0 20px; color: var(--muted); font-size: .95rem; line-height: 1.5; }
+    .number {
+      margin: 0 0 14px;
+      font-size: clamp(1.55rem, 6vw, 2rem);
+      font-weight: 800;
+      letter-spacing: .02em;
+      color: var(--text);
+      text-align: center;
+    }
+    .btn {
+      width: 100%;
+      border: 0;
+      border-radius: 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: transform .12s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-call {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(0, 85, 164, .24);
+      margin-bottom: 10px;
+    }
+    .btn-copy {
+      background: #e2e8f0;
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+    .btn-wa {
+      background: var(--secondary);
+      color: #fff;
+    }
+    .hint {
+      margin: 16px 0 0;
+      font-size: .9rem;
+      line-height: 1.5;
+      color: var(--muted);
+      text-align: center;
+    }
+    .status {
+      margin-top: 10px;
+      min-height: 20px;
+      text-align: center;
+      font-size: .88rem;
+      color: var(--secondary);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="brand">
+      <img src="assets/yenilogo.jpeg" alt="Evimde Sağlık logosu">
+      <div class="brand-title">EVİMDE SAĞLIK<br>Evde Sağlık Hizmetleri</div>
+    </div>
+    <p class="subtitle">7/24 hızlı planlama için doğrudan çağrı hattımıza bağlanın.</p>
+
+    <p class="number">+90 (554) 113 20 19</p>
+    <a class="btn btn-call" href="tel:+905541132019">Hemen Ara</a>
+
+    <button class="btn btn-copy" id="copy-number" type="button">Numarayı Kopyala</button>
+    <a class="btn btn-wa" href="https://wa.me/905541132019" rel="noopener noreferrer" target="_blank">WhatsApp ile Yaz</a>
+
+    <p class="hint">Arama başlatılamazsa numarayı kopyalayarak bizi arayabilirsiniz.</p>
+    <p class="status" id="copy-status" aria-live="polite"></p>
+  </main>
+
+  <script>
+    const copyButton = document.getElementById('copy-number');
+    const copyStatus = document.getElementById('copy-status');
+    const phoneNumber = '+905541132019';
+
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(phoneNumber);
+        copyStatus.textContent = 'Numara kopyalandı.';
+      } catch (error) {
+        copyStatus.textContent = 'Kopyalama başarısız. Numara: +90 (554) 113 20 19';
+      }
+    });
+  </script>
+</body>
+</html>
