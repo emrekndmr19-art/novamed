@@ -44,26 +44,30 @@
             return true;
         }
 
-        function initializeCallLinks() {
+        function initializeSafeCallLinks() {
             const callLinks = Array.from(document.querySelectorAll('a[href^="tel:"]'));
             if (!callLinks.length) return;
 
             let lastCallAttemptAt = 0;
-            const cooldownMs = 1200;
+            const cooldownMs = 1500;
 
             callLinks.forEach((link) => {
-                link.dataset.callLink = 'true';
                 link.addEventListener('click', (event) => {
+                    if (!event.isTrusted) {
+                        event.preventDefault();
+                        return;
+                    }
+
                     const now = Date.now();
                     if (now - lastCallAttemptAt < cooldownMs) {
                         event.preventDefault();
                         return;
                     }
+
                     lastCallAttemptAt = now;
                 });
             });
         }
-
 
 </script>
 <script>
@@ -104,28 +108,6 @@
             const isOpen = !menu.classList.contains('hidden');
             button.setAttribute('aria-expanded', isOpen.toString());
             icon.textContent = isOpen ? 'close' : 'menu';
-        }
-
-        function initializeSafeCallLinks() {
-            const callLinks = Array.from(document.querySelectorAll('a[href^="tel:"]'));
-            if (!callLinks.length) return;
-
-            const callGuard = {
-                lastTapAt: 0,
-                cooldownMs: 4000,
-            };
-
-            callLinks.forEach((link) => {
-                link.addEventListener('click', (event) => {
-                    const now = Date.now();
-                    if (now - callGuard.lastTapAt < callGuard.cooldownMs) {
-                        event.preventDefault();
-                        return;
-                    }
-
-                    callGuard.lastTapAt = now;
-                });
-            });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -576,12 +558,5 @@ Hızlı ve Güvenilir Ambulans Hizmeti İçin Bizi Arayın!
 <a aria-label="WhatsApp ile yaz" class="fixed left-4 bottom-4 md:left-6 md:bottom-6 z-50 w-16 h-16 rounded-full bg-emerald-500 text-white shadow-lg flex items-center justify-center hover:bg-emerald-600 transition-colors overflow-hidden" href="https://wa.me/905541132019" rel="noopener noreferrer" target="_blank" onclick="trackContactConversion('whatsapp_click')">
 <img alt="WhatsApp" class="w-full h-full object-cover rounded-full" src="assets/wpplogo.jpeg" loading="lazy" decoding="async"/>
 </a>
-
-
-<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeCallLinks();
-        }, { once: true });
-</script>
 
 </body></html>
