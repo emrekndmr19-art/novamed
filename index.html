@@ -85,31 +85,6 @@
             icon.textContent = isOpen ? 'close' : 'menu';
         }
 
-        function initializeSafeCallLinks() {
-            const callLinks = Array.from(document.querySelectorAll('a[href^="tel:"]'));
-            if (!callLinks.length) return;
-
-            let lastCallAttemptAt = 0;
-            const cooldownMs = 1500;
-
-            callLinks.forEach((link) => {
-                link.addEventListener('click', (event) => {
-                    if (!event.isTrusted) {
-                        event.preventDefault();
-                        return;
-                    }
-
-                    const now = Date.now();
-                    if (now - lastCallAttemptAt < cooldownMs) {
-                        event.preventDefault();
-                        return;
-                    }
-
-                    lastCallAttemptAt = now;
-                });
-            });
-        }
-
         function initializeServiceSlider() {
             const slider = document.getElementById('service-slider');
             if (!slider) return;
@@ -219,7 +194,6 @@
         }
         document.addEventListener('DOMContentLoaded', () => {
             initializeServiceSlider();
-            initializeSafeCallLinks();
         }, { once: true });
     </script>
 <style>

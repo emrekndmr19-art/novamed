@@ -2,6 +2,7 @@
 <html class="scroll-smooth" lang="tr"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="format-detection" content="telephone=no"/>
 <meta name="description" content="Evde serum, pansuman, sonda, trakeostomi ve ambulans desteği dahil profesyonel evde sağlık hizmetleri. İstanbul genelinde 7/24 planlama ve uzman ekip."/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
 <meta property="og:type" content="website"/>
@@ -44,30 +45,6 @@
             return true;
         }
 
-        function initializeSafeCallLinks() {
-            const callLinks = Array.from(document.querySelectorAll('a[href^="tel:"]'));
-            if (!callLinks.length) return;
-
-            let lastCallAttemptAt = 0;
-            const cooldownMs = 1500;
-
-            callLinks.forEach((link) => {
-                link.addEventListener('click', (event) => {
-                    if (!event.isTrusted) {
-                        event.preventDefault();
-                        return;
-                    }
-
-                    const now = Date.now();
-                    if (now - lastCallAttemptAt < cooldownMs) {
-                        event.preventDefault();
-                        return;
-                    }
-
-                    lastCallAttemptAt = now;
-                });
-            });
-        }
 
 </script>
 <script>
@@ -109,10 +86,6 @@
             button.setAttribute('aria-expanded', isOpen.toString());
             icon.textContent = isOpen ? 'close' : 'menu';
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeSafeCallLinks();
-        }, { once: true });
 
     </script>
 <style>
