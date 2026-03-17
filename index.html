@@ -85,6 +85,28 @@
             icon.textContent = isOpen ? 'close' : 'menu';
         }
 
+        function initializeSafeCallLinks() {
+            const callLinks = Array.from(document.querySelectorAll('a[href^="tel:"]'));
+            if (!callLinks.length) return;
+
+            let callInProgress = false;
+            const cooldownMs = 2500;
+
+            callLinks.forEach((link) => {
+                link.addEventListener('click', (event) => {
+                    if (!event.isTrusted || callInProgress) {
+                        event.preventDefault();
+                        return;
+                    }
+
+                    callInProgress = true;
+                    window.setTimeout(() => {
+                        callInProgress = false;
+                    }, cooldownMs);
+                });
+            });
+        }
+
         function initializeServiceSlider() {
             const slider = document.getElementById('service-slider');
             if (!slider) return;
@@ -193,6 +215,7 @@
             startAutoPlay();
         }
         document.addEventListener('DOMContentLoaded', () => {
+            initializeSafeCallLinks();
             initializeServiceSlider();
         }, { once: true });
     </script>
